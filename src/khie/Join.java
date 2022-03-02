@@ -154,6 +154,8 @@ public class Join extends JFrame {
 			pstmt.setString(4, phone.getText());
 			pstmt.setString(5, addr.getText());
 			
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
