@@ -47,7 +47,7 @@ public class Admin extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				Product product = new Product();
+				new Product();
 				dispose();
 			
 			}
@@ -67,15 +67,14 @@ public class Admin extends JFrame {
 		});
 		
 		
-		
-		
-		
-	}
+	} // 생성자 end
 	
-	
-	
-	
-	
-	
+	// 메인 메서드
+	public static void main(String[] args) {
 
-}
+		new Admin();
+		
+	} // main() end
+
+	
+} // Admin class {} end

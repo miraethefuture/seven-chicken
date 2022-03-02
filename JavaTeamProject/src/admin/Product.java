@@ -1,17 +1,14 @@
 package admin;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.sql.*;
+
 
 import javax.swing.*;
-import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -24,6 +21,12 @@ public class Product extends JFrame {
 	
 	DefaultTableModel model;
 	
+	JTextField jtf1;
+	JTextField jtf2;
+	JTextField jtf3;
+	
+	JTable table;
+	
 	public Product() {
 		
 		setTitle("재고 관리");
@@ -31,24 +34,25 @@ public class Product extends JFrame {
 		// 컨테이너
 		JPanel container1 = new JPanel();
 		JPanel container2 = new JPanel();
+
 		
 		// 컴포넌트
 		// 상단 부분 라벨과 텍스트 필드
 		JLabel jlb1 = new JLabel("메뉴명 : ");
-		JTextField jtf1 = new JTextField(5);
+		jtf1 = new JTextField(10);
 		
 		JLabel jlb2 = new JLabel("가 격 : ");
-		JTextField jtf2 = new JTextField(5);
+		jtf2 = new JTextField(10);
 		
 		JLabel jlb3 = new JLabel("재고 수량 : ");
-		JTextField jtf3 = new JTextField(5);
+		jtf3 = new JTextField(10);
 		
 		
 		// text area
 		
 		String[] header = {"메뉴명", "가 격", "재고 수량"};
 		model = new DefaultTableModel(header, 0);
-		JTable table = new JTable(model);
+		table = new JTable(model);
 		
 		JScrollPane jsp = new JScrollPane(table, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -72,13 +76,13 @@ public class Product extends JFrame {
 		add(container2, BorderLayout.SOUTH);
 		
 		
-		setBounds(200, 200, 500, 500);
+		setBounds(200, 200, 800, 500);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 		// 이벤트 추가 
-		
+		// 전체 목록 
 		jb1.addActionListener(new ActionListener() {
 			
 			@Override
@@ -91,6 +95,101 @@ public class Product extends JFrame {
 			}
 		});
 		
+		// 메뉴 등록
+		jb2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				connect();
+				insert();
+				jtf1.setText("");
+				jtf2.setText("");
+				jtf3.setText("");
+				
+				jtf1.requestFocus();
+				model.setRowCount(0); 
+			
+				select();
+				
+			}
+		});
+		
+		// 메뉴 수정
+		jb3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				connect();
+				update();
+				
+				jtf1.setText("");
+				jtf2.setText("");
+				jtf3.setText("");
+				
+				jtf1.requestFocus();
+				model.setRowCount(0); 
+			
+				select();
+				
+			}
+		});
+		
+		// 메뉴 삭제
+		jb4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				int result = JOptionPane.showConfirmDialog(null, "정말로 삭제하시겠습니까?",
+						"확인", JOptionPane.YES_NO_OPTION); 
+				
+				if(result == JOptionPane.CLOSED_OPTION) { // no 버튼 클릭시 같은 값 반환
+					JOptionPane.showMessageDialog(null, "취소를 클릭하셨습니다.");
+					
+				} else if(result == JOptionPane.YES_OPTION) {
+					connect();
+					delete();
+					
+					jtf1.setText("");
+					jtf2.setText("");
+					jtf3.setText("");
+					jtf1.requestFocus();
+				}
+			}
+		});
+		
+		
+		
+		table.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				int row = table.getSelectedRow();
+				jtf1.setText(model.getValueAt(row, 0).toString());
+				jtf2.setText(model.getValueAt(row, 1).toString());
+				jtf3.setText(model.getValueAt(row, 2).toString());
+				
+				
+			}
+		});
+		
+		
+		
 		
 		
 		
@@ -102,9 +201,9 @@ public class Product extends JFrame {
 	void connect() {
 		
 		String driver = "oracle.jdbc.OracleDriver";
-		String url ="jdbc:oracle:thin:@db202202171628_high?TNS_ADMIN=/Users/mirae/Downloads/Wallet_DB202202171628";
-        String userid="admin";
-        String pwd ="Happari13121312";
+		String url ="jdbc:oracle:thin:@db이름_high?TNS_ADMIN=/Users/mirae/Downloads/Wallet_DB202202171628";
+        String userid="유저이디";
+        String pwd ="비밀번호";
         
         // 1. 오라클 드라이버 메모리에 올리기 
         try {
@@ -156,6 +255,111 @@ public class Product extends JFrame {
 		}
 		
 	} //select() end
+	
+	//insert() 시작 
+	void insert() {
+		
+		try {
+		
+			sql = "insert into menutable values(?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, jtf1.getText());
+			pstmt.setInt(2, Integer.parseInt(jtf2.getText())); 
+			pstmt.setInt(3, Integer.parseInt(jtf3.getText()));
+			
+			int res = pstmt.executeUpdate();
+			
+			if(res > 0) {
+				
+				JOptionPane.showMessageDialog(null, "메뉴 등록 성공");
+				
+			} else {
+				JOptionPane.showMessageDialog(null, "메뉴 등록 실패");
+				
+			}
+			
+			pstmt.close(); 
+			
+		
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	} // insert() end
+	
+	// 메뉴 수정 (마우스 리스너 사용해야 할 듯)
+	void update() {
+		
+		
+		try {
+			sql = "update menutable set menu_name = ?, menu_price = ?, menu_count = ? where menu_name = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, jtf1.getText());
+			pstmt.setInt(2, Integer.parseInt(jtf2.getText())); 
+			pstmt.setInt(3, Integer.parseInt(jtf3.getText()));
+			
+			int row = table.getSelectedRow(); // jtable 선택된 셀의 row 값을 int형으로 반환 
+			
+			pstmt.setString(4, (String)model.getValueAt(row, 0)); 
+			
+			
+			int res = pstmt.executeUpdate();
+			
+			if(res > 0) {
+				JOptionPane.showMessageDialog(null, "업데이트 성공");
+			} else {
+				JOptionPane.showMessageDialog(null, "업데이트 실패");
+			}
+			
+			pstmt.close(); 
+		
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+	} // update() end
+	
+	// delete() 시작
+	void delete() {
+		
+		
+		try {
+			sql = "delete from menutable where menu_name = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			// 선택한 행 인덱스 번호가 반환됨
+			int row = table.getSelectedRow(); // jtable 선택된 셀의 row 값을 int형으로 반환 
+						
+			pstmt.setString(1, (String)model.getValueAt(row, 0)); 
+
+			int res = pstmt.executeUpdate();
+			
+			if(res > 0) {
+				
+				JOptionPane.showMessageDialog(null, "삭제 성공");
+			
+			} else {
+				
+				JOptionPane.showMessageDialog(null, "삭제 실패");
+				
+			}
+			
+			model.removeRow(row); // 테이블 상의 한 줄 삭제 
+			pstmt.close(); con.close();
+			
+			
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	} // delete() end
 	
 	
 	
