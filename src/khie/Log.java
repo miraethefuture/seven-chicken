@@ -4,10 +4,20 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.*;
 
 public class Log extends JFrame {
+	
+	Connection con = null;				// DB와 연결하는 객체
+	PreparedStatement pstmt = null;		// SQL문을 DB에 전송하는 객체
+	ResultSet rs = null;				// SQL문 실행결과를 가지고 있는 객체
 	
 	public Log() {
 
@@ -90,8 +100,85 @@ public class Log extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
-	}
+		connect();
+		
+		
+		// 이벤트 처리
+		jlogin.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+							
+				
+				
+				
+			}
+		});
+		
 
+		join.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				new Join();
+				dispose();
+				
+			}
+		});
+		
+		find.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				// connect();
+				
+				
+			}
+		});
+		
+		manager.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		
+		nm.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+
+	}
+	
+	void connect() {
+
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "web";
+		String password = "1234";
+
+		try {
+			// 1. 접속할 오라클 데이터베이스 드라이버를 메모리에 올리자
+			Class.forName(driver);
+
+			// 2. 오라클 데이터베이스와 연결을 시도
+			con = DriverManager.getConnection(url, user, password);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	} // connect() 메서드 end
+	
+	
+	
 	public static void main(String[] args) {
 		
 		new Log();

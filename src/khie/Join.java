@@ -4,10 +4,25 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.*;
 
 public class Join extends JFrame {
+	
+	Connection con = null;				
+	PreparedStatement pstmt = null;		
+	ResultSet rs = null;				
+	String sql = null;	
+	
+	JTextField id, name, phone, addr;
+	JPasswordField pwd;
 	
 	public Join() {
 		
@@ -21,11 +36,11 @@ public class Join extends JFrame {
 		JButton join = new JButton("회원가입");
 		JButton cancel = new JButton("취소");
 
-		JTextField id = new JTextField(10);
-		JPasswordField pwd = new JPasswordField(10);
-		JTextField name = new JTextField(10);
-		JTextField phone = new JTextField(10);
-		JTextField addr = new JTextField(10);
+		id = new JTextField(10);
+		pwd = new JPasswordField(10);
+		name = new JTextField(10);
+		phone = new JTextField(10);
+		addr = new JTextField(10);
 
 		// form panel
 		JPanel idPanel = new JPanel();
@@ -78,8 +93,78 @@ public class Join extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
+		// 이벤트 처리
+		join.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				connect();
+				insert();
+				
+				
+			}
+		});
+		
+		cancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				new Log();
+				dispose();
+				
+			}
+		});
+
+	}	// 기본 생성자 end
+	
+	void connect() {
+
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "web";
+		String password = "1234";
+
+		try {
+			// 1. 접속할 오라클 데이터베이스 드라이버를 메모리에 올리자
+			Class.forName(driver);
+
+			// 2. 오라클 데이터베이스와 연결을 시도
+			con = DriverManager.getConnection(url, user, password);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	} // connect() 메서드 end
+	
+	// 회원 정보를 데이터베이스에 입력하는 메서드
+	void insert() {
+		
+		
+		
+		try {
+			sql = "insert into member values(?, ?, ?, ?, ?)";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, id.getText());
+			pstmt.setString(2, pwd.getPassword().toString());
+			pstmt.setString(3, name.getText());
+			pstmt.setString(4, phone.getText());
+			pstmt.setString(5, addr.getText());
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 		
 	}
+	
 
 	public static void main(String[] args) {
 		new Join();
