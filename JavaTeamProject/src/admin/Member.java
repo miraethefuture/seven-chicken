@@ -75,6 +75,9 @@ public class Member extends JFrame {
 		JButton jb2 = new JButton("회원 등록");
 		JButton jb3 = new JButton("회원 수정");
 		JButton jb4 = new JButton("회원 삭제");
+		JButton jb5 = new JButton("관리자 메인화면");
+		
+		
 		
 		// 컨테이너에 올리기 
 		container1.add(jlb1); container1.add(jtf1);
@@ -90,6 +93,7 @@ public class Member extends JFrame {
 		container3.add(jb2);
 		container3.add(jb3);
 		container3.add(jb4);
+		container3.add(jb5);
 		
 		// 새로운 컨테이너 위에 기존의 컨테이너들 올리기
 		JPanel group = new JPanel(new BorderLayout());
@@ -199,6 +203,16 @@ public class Member extends JFrame {
 			}
 		});
 		
+		jb5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Admin();
+				dispose();
+				
+			}
+		});
+		
 		
 		table.addMouseListener(new MouseListener() {
 			
@@ -245,9 +259,9 @@ public class Member extends JFrame {
 	void connect() {
 		
 		String driver = "oracle.jdbc.OracleDriver";
-		String url ="jdbc:oracle:thin:@db202202171628_high?TNS_ADMIN=/Users/mirae/Downloads/Wallet_DB202202171628";
-        String userid="admin";
-        String pwd ="Happari13121312";
+		String url ="jdbc:oracle:thin:@db이름_high?TNS_ADMIN=/Users/mirae/Downloads/Wallet_DB202202171628";
+        String userid="유저이디";
+        String pwd ="비밀번호";
         
         // 1. 오라클 드라이버 메모리에 올리기 
         try {

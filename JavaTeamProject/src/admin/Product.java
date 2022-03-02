@@ -60,6 +60,7 @@ public class Product extends JFrame {
 		JButton jb2 = new JButton("메뉴 등록");
 		JButton jb3 = new JButton("메뉴 수정");
 		JButton jb4 = new JButton("메뉴 삭제");
+		JButton jb5 = new JButton("관리자 메인화면");
 		
 		// 컨테이너에 올리기 
 		container1.add(jlb1); container1.add(jtf1);
@@ -70,6 +71,7 @@ public class Product extends JFrame {
 		container2.add(jb2);
 		container2.add(jb3);
 		container2.add(jb4);
+		container2.add(jb5);
 		
 		add(container1, BorderLayout.NORTH);
 		add(jsp, BorderLayout.CENTER);
@@ -160,6 +162,17 @@ public class Product extends JFrame {
 			}
 		});
 		
+		
+		jb5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				new Admin();
+				dispose();
+				
+			}
+		});
 		
 		
 		table.addMouseListener(new MouseListener() {

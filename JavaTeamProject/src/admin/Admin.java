@@ -36,7 +36,7 @@ public class Admin extends JFrame {
 		add(container2, BorderLayout.CENTER);
 		
 		
-		setBounds(200, 200, 300, 300);
+		setBounds(200, 200, 300, 150);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -49,6 +49,8 @@ public class Admin extends JFrame {
 				
 				new Product();
 				dispose();
+				
+				
 			
 			}
 		});
