@@ -23,7 +23,7 @@ public class Member extends JFrame {
 	JTextField jtf1;
 	JTextField jtf2;
 	JTextField jtf3;
-	JTextField jtf4;
+	JPasswordField jtf4;
 	JTextField jtf5;
 	JTextField jtf6;
 	JTextField jtf7;
@@ -51,7 +51,8 @@ public class Member extends JFrame {
 		jtf3 = new JTextField(10);
 		
 		JLabel jlb4 = new JLabel("비밀번호 : ");
-		jtf4 = new JTextField(10);
+//		jtf4 = new JTextField(10);
+		jtf4 = new JPasswordField(10);
 		
 		JLabel jlb5 = new JLabel("포인트 : ");
 		jtf5 = new JTextField(10);
