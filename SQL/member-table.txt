@@ -26,3 +26,16 @@ insert into membertable values(7777, '전현무', 'lucifer', '1234g', 650, '경�
 insert into membertable values(8888, '박나래', 'naraebar', '1234h', 330, '서울시 마포구', '010-0605-0101');
 insert into membertable values(9999, '이광수', 'girin33', '1234i', 100, '서울시 마포구', '010-1122-2233');
 insert into membertable values(1010, '지석진', 'zzzzz', '1234j', 50, '경기도 평택시', '010-4455-6677');
+
+
+-- 관리자 테이블
+create table admintable (
+    admin_id varchar2(20),
+    admin_pwd varchar2(20) NOT NULL,
+    CONSTRAINT PK_ADMINID PRIMARY KEY (admin_id)
+);
+
+
+-- 관리자 추가
+insert into admintable values('kim1234', '12341234');
+insert into admintable values('park4567', '45674567');
