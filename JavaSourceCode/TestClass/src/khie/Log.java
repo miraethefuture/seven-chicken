@@ -114,8 +114,14 @@ public class Log extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				Login();
-				// new menu();
+				String pwd = Login(jtf1.getText());
+				
+				if(pwd.equals(jtf2.getText())) {
+					JOptionPane.showMessageDialog(null, "성공");					
+				}else {
+					JOptionPane.showMessageDialog(null, "실패");
+				}
+				
 				
 			}
 		});
@@ -185,29 +191,32 @@ public class Log extends JFrame {
 	}	// connect() 메서드 end
 	
 	
-	void Login() {
-				
+	String Login(String str) {
+		
+		String pwd = "";
+		
 		try {
-			sql = "select * from membertable where mem_id = ?, mem_pwd = ?";
+			sql = "select mem_pwd from membertable where mem_id = ?";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, jtf1.getText());
-			pstmt.setString(2, jtf2.getText());
+			pstmt.setString(1, str);
 			
 			rs = pstmt.executeQuery();
-
+			
 			if(rs.next()) {
-				JOptionPane.showMessageDialog(null, "로그인 성공");
+				pwd = rs.getString("mem_pwd");				
 			}
 			
 			rs.close(); pstmt.close(); 
-
-		} catch (SQLException e) {
+			
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-	}	// Login() 메서드 end
+		
+		return pwd;
+		
+	}
 	
 
 	public static void main(String[] args) {
