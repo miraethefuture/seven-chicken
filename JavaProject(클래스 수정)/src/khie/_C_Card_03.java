@@ -1,4 +1,3 @@
-<<<<<<< HEAD:JavaProject/src/khie/_C_Card_03.java
 package khie;
 
 import java.awt.BorderLayout;

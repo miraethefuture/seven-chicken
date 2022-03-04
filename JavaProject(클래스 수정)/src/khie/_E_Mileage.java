@@ -1,4 +1,4 @@
-<<<<<<< HEAD:JavaProject/src/khie/_E_Mileage.java
+
 package khie;
 
 import java.awt.BorderLayout;

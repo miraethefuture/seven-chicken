@@ -1,4 +1,4 @@
-<<<<<<< HEAD:JavaProject/src/khie/_D_Money_01.java
+
 package khie;
 
 import java.awt.BorderLayout;
