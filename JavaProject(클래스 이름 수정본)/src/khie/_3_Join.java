@@ -109,7 +109,8 @@ public class _3_Join extends JFrame {
 				addr.setText("");
 				name.requestFocus();
 				
-				
+				new _2_Log();
+				dispose();
 			}
 		});
 		
@@ -130,11 +131,8 @@ public class _3_Join extends JFrame {
 	void connect() {
 
 		String driver = "oracle.jdbc.driver.OracleDriver";
-
 		String url = "jdbc:oracle:thin:@192.168.0.4:1521:xe";
-
 		String user = "web";
-
 		String password = "1234";
 
 		try {

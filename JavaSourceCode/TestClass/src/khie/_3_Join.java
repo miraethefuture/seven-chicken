@@ -15,19 +15,19 @@ import java.sql.SQLException;
 import javax.swing.*;
 
 public class _3_Join extends JFrame {
-	
-	Connection con = null;				
-	PreparedStatement pstmt = null;		
-	ResultSet rs = null;				
-	String sql = null;	
-	
+
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	String sql = null;
+
 	JTextField id, name, phone, addr, pwd;
-	
-	
+
+
 	public _3_Join() {
-		
+
 		setTitle("회원가입");
-		
+
 		JLabel title = new JLabel("회원가입", JLabel.CENTER);
 
 		title.setFont(new Font("맑은 고딕", Font.BOLD, 25));
@@ -62,12 +62,12 @@ public class _3_Join extends JFrame {
 		phonePanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		phonePanel.add(new JLabel("주   소 : "));
 		phonePanel.add(addr);
-		
+
 		JPanel addrPanel = new JPanel();
 		addrPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		addrPanel.add(new JLabel("연락처 : "));
 		addrPanel.add(phone);
-		
+
 
 		JPanel formPanel = new JPanel();
 		formPanel.setLayout(new GridLayout(5, 1));
@@ -92,42 +92,42 @@ public class _3_Join extends JFrame {
 		setBounds(200, 200, 250, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		
-		
+
+
 		connect();
-		
+
 		// 이벤트 처리
 		join.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				insert();
-				
+
 				name.setText(""); phone.setText("");
 				id.setText(""); pwd.setText("");
 				addr.setText("");
 				name.requestFocus();
-				
+
 				new _2_Log();
 				dispose();
 			}
 		});
-		
+
 		cancel.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				new _2_Log();
 				dispose();
-				
+
 			}
 		});
 
 	}	// 기본 생성자 end
-	
-	
+
+
 	void connect() {
 
 		String driver = "oracle.jdbc.driver.OracleDriver";
@@ -146,30 +146,30 @@ public class _3_Join extends JFrame {
 			e.printStackTrace();
 		}
 	} // connect() 메서드 end
-	
-	
+
+
 	// 회원 정보를 데이터베이스에 입력하는 메서드
 	void insert() {
-		
+
 		try {
 			sql = "insert into membertable values(member_seq.nextval, ?, ?, ?, '100', ?, ?)";
-			
+
 			pstmt = con.prepareStatement(sql);
-			
+
 			pstmt.setString(1, name.getText());
 			pstmt.setString(2, id.getText());
 			pstmt.setString(3, pwd.getText());
 			pstmt.setString(4, addr.getText());
 			pstmt.setString(5, phone.getText());
-			
+
 			int res = pstmt.executeUpdate();
-			
+
 			if (res > 0) {
 				JOptionPane.showMessageDialog(null, "회원 가입 완료");
 			}else {
 				JOptionPane.showMessageDialog(null, "회원 가입 실패");
 			}
-			
+
 			pstmt.close();
 
 		} catch (SQLException e) {
@@ -178,10 +178,10 @@ public class _3_Join extends JFrame {
 		}
 
 	}	// insert() 메서드 end
-	
+
 
 	public static void main(String[] args) {
-		
+
 		new _3_Join();
 
 	}
