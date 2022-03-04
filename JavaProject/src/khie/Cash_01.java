@@ -1,4 +1,4 @@
-package khie;
+package sevenChicken;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -117,9 +117,9 @@ public class Cash_01 extends JFrame{
                 int mileage1 = Pm;
                 int result =  total - mileage1;
                 int result1 =  mileage1 - total;
-
+                
 				jta.append("남은 금액 : " + String.format("%,d원", result)+"\n");
-				jta.append("남은 마일리지 : " + String.format("%,d점", result)+"\n");
+				jta.append("남은 마일리지 : " + String.format("%,d점", result1)+"\n");
 			}
 		});
 
@@ -137,9 +137,11 @@ public class Cash_01 extends JFrame{
 				int mileage1 = Pm;
 				int result = price - Pm;
 				int result1 = money1-result;
+				int Pmileage = price/100;
 				
 				jta.append("입 금 액 : " + String.format("%,d원", money1)+"\n");
 				jta.append("잔     액 : " + String.format("%,d원", result1)+"\n");
+				jta.append("적립될 마일리지: " + String.format("%,d원", Pmileage)+"\n");
 			}
 		});
 		
@@ -202,7 +204,7 @@ public class Cash_01 extends JFrame{
      	
     	 try {
     		 
-    		sql = "select MILEAGE from products where  PNUM = 2";
+    		sql = "select MILEAGE from products where  PNUM = 9";
     		 
 			pstmt = con.prepareStatement(sql);
 			

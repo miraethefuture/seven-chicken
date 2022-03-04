@@ -1,4 +1,4 @@
-package khie;
+package sevenChicken;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -147,7 +147,7 @@ public class Mileage extends JFrame{
      	
    	 try {
    		 
-   		sql = "select MILEAGE from products where  PNUM = 2";
+   		sql = "select MILEAGE from products where  PNUM = 9";
    		 
 			pstmt = con.prepareStatement(sql);
 			

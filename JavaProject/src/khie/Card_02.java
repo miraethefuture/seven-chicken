@@ -1,4 +1,4 @@
-package khie;
+package sevenChicken;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -102,12 +102,14 @@ public class Card_02 extends JFrame{
 				int total = price;
 				int mileage = Pm;
 				int Nmileage = price - Pm;
+				int Pmileage = Nmileage/100;
 				
 				connect();
 				select();
 				select2();
-
-				jta.append(" 남은 결제 금액 : " + String.format("%,d점", Nmileage)+"\n");	
+	      		
+				jta.append(" 남은 결제 금액 : " + String.format("%,d점", Nmileage)+"\n");
+				jta.append(" 적립될 마일리지 : " + String.format("%,d점", Pmileage)+"\n");				
 				
 			}
 		});
@@ -192,7 +194,7 @@ public class Card_02 extends JFrame{
     	
     	 try {
     		 
-    		sql = "select MILEAGE from products where  PNUM = 2";
+    		sql = "select MILEAGE from products where  PNUM = 9";
     		 
 			pstmt = con.prepareStatement(sql);
 			

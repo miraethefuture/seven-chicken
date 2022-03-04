@@ -1,4 +1,4 @@
-package khie;
+package sevenChicken;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
