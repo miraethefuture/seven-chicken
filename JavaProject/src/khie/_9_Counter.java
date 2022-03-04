@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class Counter extends JFrame{
+public class _9_Counter extends JFrame{
 
-	public Counter() {
+	public _9_Counter() {
 		
 		setTitle("결제 화면");
 		
@@ -46,7 +46,7 @@ public class Counter extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			new Card_02();
+			new _B_Card_02();
 			dispose();
 		}
 	});
@@ -56,7 +56,7 @@ public class Counter extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			new Cash_01();
+			new _A_Cash_01();
 			dispose();
 		}
 	});
@@ -74,7 +74,7 @@ public class Counter extends JFrame{
 	
 	public static void main(String[] args) {
 		
-		new Counter();
+		new _9_Counter();
 
 	}
 

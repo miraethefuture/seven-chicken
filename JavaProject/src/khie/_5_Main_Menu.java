@@ -2,11 +2,11 @@ package khie;
 
 import javax.swing.*;
 
-public class Main_Menu extends JFrame{
+public class _5_Main_Menu extends JFrame{
 
 	public static void main(String[] args) {
 
-		new Menu();
+		new _6_Menu();
 		
 	}
 

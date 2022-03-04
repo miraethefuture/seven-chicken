@@ -10,7 +10,7 @@ import java.text.DecimalFormat;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class Cart extends JFrame{
+public class _7_Cart extends JFrame{
 	
 	DecimalFormat formatter = new DecimalFormat("###,###");
 	
@@ -22,9 +22,9 @@ public class Cart extends JFrame{
 	DefaultTableModel model;
 	JTable table;
 	JLabel resultPrice;
-	int result = Menu.result;
+	int result = _6_Menu.result;
 	
-	public Cart() {
+	public _7_Cart() {
 		
 		setTitle("담은 목록");
 		
@@ -50,7 +50,7 @@ public class Cart extends JFrame{
 		JLabel emptyjlb = new JLabel("        ");
 		JButton minusBtn = new JButton("-");
 		JLabel resultPriceText = new JLabel("        총 금액 : ");
-		resultPrice = new JLabel(formatter.format(Menu.result) + "원");
+		resultPrice = new JLabel(formatter.format(_6_Menu.result) + "원");
 		JButton orderBtn = new JButton("결제하기");
 		
 		plusBtn.setFont(font);
@@ -114,7 +114,7 @@ public class Cart extends JFrame{
 				// DB에 result 값 넘겨주기
 				
 				
-				new Pay();	// 결제 화면
+				new _8_Pay();	// 결제 화면
 			}
 		});
 		
@@ -124,8 +124,11 @@ public class Cart extends JFrame{
 	public void connect() {
 		
 		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+
+		String url = "jdbc:oracle:thin:@192.168.0.4:1521:xe";
+
 		String user = "web";
+
 		String password = "1234";
 		
 		try {

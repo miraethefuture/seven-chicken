@@ -11,7 +11,7 @@ import java.text.DecimalFormat;
 
 import javax.swing.*;
 
-public class Menu extends JFrame{
+public class _6_Menu extends JFrame{
 	
 	DecimalFormat formatter = new DecimalFormat("###,###");
 	
@@ -31,7 +31,7 @@ public class Menu extends JFrame{
 	static int cokecount = 0, spritecount = 0, fantacount = 0, hanlasanbeercount = 0, honeysparklingcount = 0, draftbeercount = 0;
 	static JButton cartBtn;
 	
-	public Menu() {
+	public _6_Menu() {
 		
 		setTitle("메뉴 선택");
 		
@@ -1489,7 +1489,7 @@ public class Menu extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				
 				dispose();
-				new Cart();
+				new _7_Cart();
 			}
 		});
 		
@@ -1502,7 +1502,7 @@ public class Menu extends JFrame{
 				// DB에 result 값 넘겨주기
 				
 				
-				new Pay();	// 결제 화면
+				new _8_Pay();	// 결제 화면
 			}
 		});
 		
@@ -1512,8 +1512,11 @@ public class Menu extends JFrame{
 	public void connect() {
 		
 		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+
+		String url = "jdbc:oracle:thin:@192.168.0.4:1521:xe";
+
 		String user = "web";
+
 		String password = "1234";
 		
 		try {

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 import javax.swing.*;
 
-public class Mileage extends JFrame{
+public class _E_Mileage extends JFrame{
 
 	Connection con = null;                  // DB와 연결하는 객체
 	PreparedStatement pstmt = null;         // SQL문을 DB에 전송하는 객체
@@ -20,7 +20,7 @@ public class Mileage extends JFrame{
 	
 	int Pm = 0;
 	
-	public Mileage() {
+	public _E_Mileage() {
 	       
 		setTitle("마일리지(회원)");
 		
@@ -124,16 +124,18 @@ public class Mileage extends JFrame{
 	}
 	void connect() {
 
-    	String driver = "oracle.jdbc.OracleDriver";
+		String driver = "oracle.jdbc.driver.OracleDriver";
 
-		String url ="jdbc:oracle:thin:@192.168.123.116:1521:xe";
-        String userid="web";
-        String pwd ="1234";
+		String url = "jdbc:oracle:thin:@192.168.0.4:1521:xe";
+
+		String user = "web";
+
+		String password = "1234";
 
 
 	try {
 		Class.forName(driver);
-		con= DriverManager.getConnection(url, userid, pwd);
+		con= DriverManager.getConnection(url, user, password);
 
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
@@ -167,7 +169,7 @@ public class Mileage extends JFrame{
     }
 	public static void main(String[] args) {
 		
-      new Mileage();
+      new _E_Mileage();
 	}
 
 }

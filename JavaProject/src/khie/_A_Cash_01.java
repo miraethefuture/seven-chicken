@@ -14,33 +14,41 @@ import javax.swing.table.DefaultTableModel;
 
 import oracle.jdbc.driver.DBConversion;
 
-public class Card_02 extends JFrame{
-	
+
+public class _A_Cash_01 extends JFrame{
+
 	Connection con = null;                  // DB와 연결하는 객체
 	PreparedStatement pstmt = null;         // SQL문을 DB에 전송하는 객체
 	ResultSet rs = null;                    // SQL문 실행 결과를 가지고 있는 객체
 	String sql = null;
 
+	JTextField jtf1;
+	JTextField jtf2;
 
 	int price = 0;
-    int Pm = 0;
-	
-	public Card_02() {
+	int mil = 0;
+	int Pm = 0;
 
-		setTitle("카드결제");
+	public _A_Cash_01() {
+
+		setTitle("현금결제");
 
 		// 컨테이너를 만들어야 한다.
 		JPanel container1 = new JPanel();
 		JPanel container2 = new JPanel();
 		JPanel container3 = new JPanel();
 
+
 		// 1. 컴포넌트를 만들어야 한다.
 		// 1-1. 상단에 들어갈 컴포넌트
-     	connect();
+		JLabel jl1 = new JLabel("입  금  액 : ");
+		JTextField money = new JTextField(8);
+
+		connect();
 		select();
 
-		JLabel jl1 = new JLabel("카드결제");
 		JLabel jl2 = new JLabel("결제 금액 : " + price);
+//		JTextField jtf1 = new JTextField(8);
 
 
 		JTextArea jta = new JTextArea(3,10);
@@ -51,23 +59,27 @@ public class Card_02 extends JFrame{
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		// 1-2. 하단에 들어갈  컴포넌트
-		JButton button1 = new JButton("조회");
+		JButton button1 = new JButton("조  회");
 		JButton button2 = new JButton("마일리지 사용");
-		JButton button3 = new JButton("계산");
-		JButton button4 = new JButton("취소");
-        
-		
-		container1.add(jl1); container2.add(jl2);
+		JButton button3 = new JButton("결  제");
+		JButton button4 = new JButton("확  인");
+
+		container1.add(jl1);
+		container1.add(money);
+		container2.add(jl2);
 		container3.add(button1);
 		container3.add(button2);
 		container3.add(button3);
 		container3.add(button4);
 
+		JPanel group1 = new JPanel(new BorderLayout());
 
-		add(container1, BorderLayout.NORTH);
-		add(container2, BorderLayout.NORTH);
-		add(jps, BorderLayout.CENTER);
-		add(container3, BorderLayout.SOUTH);
+		group1.add(container1,BorderLayout.NORTH);
+		group1.add(container2,BorderLayout.CENTER);
+		group1.add(jps,BorderLayout.SOUTH);
+
+		add(group1, BorderLayout.NORTH);
+		add(container3, BorderLayout.CENTER);
 
 		setBounds(300,300,400, 250);
 
@@ -75,7 +87,7 @@ public class Card_02 extends JFrame{
 
 		setVisible(true);
 
-        button1.addActionListener(new ActionListener() {
+		button1.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -85,61 +97,59 @@ public class Card_02 extends JFrame{
 				select2();
 
 				int total = price;
-				int mileage = total/10;
 				int mileage1 = Pm;
 
-				jta.append("결재금액 : " + String.format("%,d원", total)+"\n");			
+				jta.append("결재금액 : " + String.format("%,d원", total)+"\n");				
 				jta.append("현재 마일리지 : " + String.format("%,d점", mileage1)+"\n");
 			}
 		});
-
-        
+ 
         button2.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				int total = price;
-				int mileage = Pm;
-				int Nmileage = price - Pm;
-				
 				connect();
 				select();
 				select2();
-
-				jta.append(" 남은 결제 금액 : " + String.format("%,d점", Nmileage)+"\n");	
 				
+				int total = price;
+                int mileage1 = Pm;
+                int result =  total - mileage1;
+                int result1 =  mileage1 - total;
+
+				jta.append("남은 금액 : " + String.format("%,d원", result)+"\n");
+				jta.append("남은 마일리지 : " + String.format("%,d점", result)+"\n");
 			}
 		});
-
 
 		button3.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-					
-					int result = JOptionPane.showConfirmDialog(null, "결제하시겠습니까?",
-							"확인", JOptionPane.YES_NO_OPTION);
-					
-					if(result == JOptionPane.CLOSED_OPTION) {
-						JOptionPane.showMessageDialog(null, "취소하셨습니다.");
-					}else if(result == JOptionPane.YES_OPTION)
-						
-				new Card_03();
-				dispose();
-
+				connect();
+				select();
+				select2();
+				
+				int money1 = Integer.parseInt(money.getText());
+				int total = price;
+				int mileage1 = Pm;
+				int result = price - Pm;
+				int result1 = money1-result;
+				
+				jta.append("입 금 액 : " + String.format("%,d원", money1)+"\n");
+				jta.append("잔     액 : " + String.format("%,d원", result1)+"\n");
 			}
 		});
 		
-		button3.addActionListener(new ActionListener() {
-
+		button4.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				new Counter();
+				
+				new _E_Mileage();
 				dispose();
-			
 			}
 		});
 	}
@@ -147,16 +157,18 @@ public class Card_02 extends JFrame{
 
 			void connect() {
 
-                	String driver = "oracle.jdbc.OracleDriver";
+				String driver = "oracle.jdbc.driver.OracleDriver";
 
-            		String url ="jdbc:oracle:thin:@192.168.123.116:1521:xe";
-                    String userid="web";
-                    String pwd ="1234";
+				String url = "jdbc:oracle:thin:@192.168.0.4:1521:xe";
+
+				String user = "web";
+
+				String password = "1234";
 
 
         		try {
         			Class.forName(driver);
-        			con= DriverManager.getConnection(url, userid, pwd);
+        			con= DriverManager.getConnection(url, user, password);
 
         		} catch (Exception e) {
         			// TODO Auto-generated catch block
@@ -186,10 +198,10 @@ public class Card_02 extends JFrame{
 		      // TODO Auto-generated catch block
 		       e.printStackTrace();
 	          }
-}
+            }
      
      void select2() {
-    	
+     	
     	 try {
     		 
     		sql = "select MILEAGE from products where  PNUM = 2";
@@ -210,10 +222,14 @@ public class Card_02 extends JFrame{
 			e.printStackTrace();
 		}
      }
+     
 
-public static void main(String[] args) {
-		
-		new Card_02();
+
+	public static void main(String[] args) {
+
+	     new _A_Cash_01();
+	    
+
 	}
 
 }

@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 import javax.swing.*;
 
-public class Join extends JFrame {
+public class _3_Join extends JFrame {
 	
 	Connection con = null;				
 	PreparedStatement pstmt = null;		
@@ -24,7 +24,7 @@ public class Join extends JFrame {
 	JTextField id, name, phone, addr, pwd;
 	
 	
-	public Join() {
+	public _3_Join() {
 		
 		setTitle("회원가입");
 		
@@ -118,7 +118,7 @@ public class Join extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				new Log();
+				new _2_Log();
 				dispose();
 				
 			}
@@ -130,8 +130,11 @@ public class Join extends JFrame {
 	void connect() {
 
 		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+
+		String url = "jdbc:oracle:thin:@192.168.0.4:1521:xe";
+
 		String user = "web";
+
 		String password = "1234";
 
 		try {
@@ -181,7 +184,7 @@ public class Join extends JFrame {
 
 	public static void main(String[] args) {
 		
-		new Join();
+		new _3_Join();
 
 	}
 

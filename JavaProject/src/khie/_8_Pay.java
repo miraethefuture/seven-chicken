@@ -2,9 +2,9 @@ package khie;
 
 import javax.swing.*;
 
-public class Pay extends JFrame {
+public class _8_Pay extends JFrame {
 
-	public Pay() {
+	public _8_Pay() {
 		
 		setTitle("결제 창");
 		

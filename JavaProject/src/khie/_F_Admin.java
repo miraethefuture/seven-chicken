@@ -1,4 +1,4 @@
-package admin;
+package khie;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -9,10 +9,10 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 
-public class Admin extends JFrame {
+public class _F_Admin extends JFrame {
 	
 	
-	public Admin() {
+	public _F_Admin() {
 	
 		// 컨테이너
 		JPanel container1 = new JPanel();
@@ -47,7 +47,7 @@ public class Admin extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				new Product();
+				new _H_Product();
 				dispose();
 				
 				
@@ -62,7 +62,7 @@ public class Admin extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				new Member();
+				new _G_Member();
 				dispose();
 			
 			}
@@ -74,7 +74,7 @@ public class Admin extends JFrame {
 	// 메인 메서드
 	public static void main(String[] args) {
 
-		new Admin();
+		new _F_Admin();
 		
 	} // main() end
 

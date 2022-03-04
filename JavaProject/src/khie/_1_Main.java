@@ -1,9 +1,9 @@
 package khie;
 
-public class Main {
+public class _1_Main {
 
 	public static void main(String[] args) {
-		new Log();
+		new _2_Log();
 
 	}
 

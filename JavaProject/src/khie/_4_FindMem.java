@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 import javax.swing.*;
 
-public class FindMem extends JFrame {
+public class _4_FindMem extends JFrame {
 	
 	Connection con = null;				
 	PreparedStatement pstmt = null;		
@@ -23,7 +23,7 @@ public class FindMem extends JFrame {
 	
 	JTextField jtf1, jtf3;
 	
-	public FindMem() {
+	public _4_FindMem() {
 		
 		setTitle("회원 정보 찾기");
 		
@@ -145,7 +145,7 @@ public class FindMem extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				connect();
-				new Log();
+				new _2_Log();
 				dispose();
 				
 			}
@@ -155,10 +155,12 @@ public class FindMem extends JFrame {
 	void connect() {
 		
 		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "web";
-		String password = "1234";
 
+		String url = "jdbc:oracle:thin:@192.168.0.4:1521:xe";
+
+		String user = "web";
+
+		String password = "1234";
 		try {
 			// 1. 접속할 오라클 데이터베이스 드라이버를 메모리에 올리자
 			Class.forName(driver);
@@ -229,7 +231,7 @@ public class FindMem extends JFrame {
 	
 
 	public static void main(String[] args) {
-		new FindMem();
+		new _4_FindMem();
 
 	}
 

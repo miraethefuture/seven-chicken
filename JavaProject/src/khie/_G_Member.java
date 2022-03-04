@@ -11,7 +11,7 @@ import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class Member extends JFrame {
+public class _G_Member extends JFrame {
 	
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -30,7 +30,7 @@ public class Member extends JFrame {
 	
 	JTable table;
 	
-	public Member() {
+	public _G_Member() {
 		
 		setTitle("회원 관리");
 		
@@ -208,7 +208,7 @@ public class Member extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Admin();
+				new _F_Admin();
 				dispose();
 				
 			}
@@ -259,17 +259,20 @@ public class Member extends JFrame {
 	// connect() 메서드 : 후에 DB url, userid, pwd 변경해야 함.
 	void connect() {
 		
-		String driver = "oracle.jdbc.OracleDriver";
-		String url ="jdbc:oracle:thin:@db이름_high?TNS_ADMIN=/Users/mirae/Downloads/Wallet_DB202202171628";
-        String userid="유저이디";
-        String pwd ="비밀번호";
+		String driver = "oracle.jdbc.driver.OracleDriver";
+
+		String url = "jdbc:oracle:thin:@192.168.0.4:1521:xe";
+
+		String user = "web";
+
+		String password = "1234";
         
         // 1. 오라클 드라이버 메모리에 올리기 
         try {
 			Class.forName(driver);
 		
 		// 2. 오라클 DB와 연결 
-			con = DriverManager.getConnection(url, userid, pwd);
+			con = DriverManager.getConnection(url, user, password);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -440,7 +443,7 @@ public class Member extends JFrame {
 	
 	public static void main(String[] args) {
 		
-		new Member();
+		new _G_Member();
 	}
 
 }

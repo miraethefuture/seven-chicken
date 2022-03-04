@@ -6,29 +6,24 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class Card_03 extends JFrame{ 
+public class _D_Money_01 extends JFrame{
 	
-	public Card_03() {
-		
+	public _D_Money_01() {
 		
 		setTitle("결제 완료");
 		
 		JPanel container1 = new JPanel();
 		JPanel container2 = new JPanel();
-		JPanel container3 = new JPanel();
 
-		JLabel jl1 = new JLabel("          ");
-		JLabel jl2 = new JLabel("카드 결제가 완료되었습니다.");
+		JLabel jl1 = new JLabel("현금 결제가 완료되었습니다.");
 		
 		JButton button1 = new JButton("확인");
 		
 		container1.add(jl1);
-		container1.add(jl2);
 		container2.add(button1);
 		
-		add(container1, BorderLayout.NORTH);
-		add(container2, BorderLayout.CENTER);
-		add(container3, BorderLayout.SOUTH);	
+		add(container1, BorderLayout.CENTER);
+		add(container2, BorderLayout.SOUTH);	
 		
 		setBounds(300,300,400, 250);
 
@@ -41,7 +36,7 @@ public class Card_03 extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				new Mileage();
+				new _E_Mileage();
 				dispose();
 				
 			}
@@ -50,7 +45,7 @@ public class Card_03 extends JFrame{
 
 	public static void main(String[] args) {
 		
-		new Card_03();
+		new _D_Money_01();
 
 	}
 

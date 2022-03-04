@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 import javax.swing.*;
 
-public class Log extends JFrame {
+public class _2_Log extends JFrame {
 	
 	Connection con = null;				// DB와 연결하는 객체
 	PreparedStatement pstmt = null;		// SQL문을 DB에 전송하는 객체
@@ -25,7 +25,7 @@ public class Log extends JFrame {
 	
 
 	
-	public Log() {
+	public _2_Log() {
 
 		setTitle("SEVEN 치킨 주문");
 		
@@ -126,7 +126,7 @@ public class Log extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				new Join();
+				new _3_Join();
 				dispose();
 				
 			}
@@ -137,7 +137,7 @@ public class Log extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				new FindMem();
+				new _4_FindMem();
 				dispose();
 				
 			}
@@ -168,8 +168,11 @@ public class Log extends JFrame {
 	void connect() {
 
 		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+
+		String url = "jdbc:oracle:thin:@192.168.0.4:1521:xe";
+
 		String user = "web";
+
 		String password = "1234";
 
 		try {
@@ -212,7 +215,7 @@ public class Log extends JFrame {
 
 	public static void main(String[] args) {
 		
-		new Log();
+		new _2_Log();
 
 	}
 
