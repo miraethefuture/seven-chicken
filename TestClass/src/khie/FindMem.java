@@ -21,7 +21,7 @@ public class FindMem extends JFrame {
 	ResultSet rs = null;				
 	String sql = null;	
 	
-	JTextField jtf1, jtf2, jtf3;
+	JTextField jtf1, jtf3;
 	
 	public FindMem() {
 		
@@ -32,7 +32,7 @@ public class FindMem extends JFrame {
 		JPanel container2 = new JPanel();
 		JPanel container3 = new JPanel();
 		
-		container1.setLayout(new GridLayout(3, 2));
+		container1.setLayout(new GridLayout(2, 2));
 		container2.setLayout(new GridLayout(1, 2));
 		
 		JLabel jl = new JLabel("회원 정보 찾기");
@@ -47,13 +47,13 @@ public class FindMem extends JFrame {
 		jtf1 = new JTextField(10);
 		namePanel2.add(jtf1);
 		
-		JPanel phonePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		JLabel jl2 = new JLabel("연락처 : ", JLabel.CENTER);
-		phonePanel.add(jl2);
-
-		JPanel phonePanel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		jtf2 = new JTextField(10);
-		phonePanel2.add(jtf2);
+//		JPanel phonePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+//		JLabel jl2 = new JLabel("연락처 : ", JLabel.CENTER);
+//		phonePanel.add(jl2);
+//
+//		JPanel phonePanel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+//		jtf2 = new JTextField(10);
+//		phonePanel2.add(jtf2);
 		
 		JPanel idPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		JLabel jl3 = new JLabel("아이디 : ", JLabel.CENTER);
@@ -82,8 +82,8 @@ public class FindMem extends JFrame {
 		
 		container1.add(namePanel);
 		container1.add(namePanel2);
-		container1.add(phonePanel);
-		container1.add(phonePanel2);
+//		container1.add(phonePanel);
+//		container1.add(phonePanel2);
 		container1.add(idPanel);
 		container1.add(idPanel2);
 		
@@ -110,7 +110,7 @@ public class FindMem extends JFrame {
 		setVisible(true);
 		pack();
 		
-		connection();
+		connect();
 		
 		// 이벤트 처리
 		
@@ -118,6 +118,7 @@ public class FindMem extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				
 				String id = findId(jtf1.getText());
 				jtf3.setText(id);
@@ -143,6 +144,7 @@ public class FindMem extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				connect();
 				new Log();
 				dispose();
 				
@@ -150,7 +152,7 @@ public class FindMem extends JFrame {
 		});
 	}
 	
-	void connection() {
+	void connect() {
 		
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -168,7 +170,8 @@ public class FindMem extends JFrame {
 			e.printStackTrace();
 		}
 		
-	}
+	}	// connect() 메서드 end
+	
 	
 	String findId(String str) {
 		
@@ -183,7 +186,7 @@ public class FindMem extends JFrame {
 			
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				id = rs.getString("mem_id");
 			}
 			
@@ -194,7 +197,8 @@ public class FindMem extends JFrame {
 			e1.printStackTrace();
 		}
 		return id;
-	}
+	}	// findId() 메서드 end
+	
 	
 	String findPwd(String str) {
 
@@ -213,8 +217,7 @@ public class FindMem extends JFrame {
 				pwd = rs.getString("mem_pwd");
 			}
 
-			rs.close();
-			pstmt.close();
+			rs.close();	pstmt.close(); con.close();
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -222,7 +225,8 @@ public class FindMem extends JFrame {
 		}
 		return pwd;
 
-	}
+	}	// findPwd() 메서드 end
+	
 
 	public static void main(String[] args) {
 		new FindMem();
