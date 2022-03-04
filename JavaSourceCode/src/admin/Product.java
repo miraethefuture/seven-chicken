@@ -61,6 +61,7 @@ public class Product extends JFrame {
 		JButton jb3 = new JButton("메뉴 수정");
 		JButton jb4 = new JButton("메뉴 삭제");
 		JButton jb5 = new JButton("관리자 메인화면");
+	
 		
 		// 컨테이너에 올리기 
 		container1.add(jlb1); container1.add(jtf1);
