@@ -22,7 +22,7 @@ public class _F_Admin extends JFrame {
 		JLabel title = new JLabel("관리자 모드");
 		
 		title.setForeground(new Color(51, 51, 51));
-		title.setFont(new FontUIResource("휴먼편지체", Font.ITALIC, 25));
+		title.setFont(new FontUIResource("함초롬돋움", Font.ITALIC, 25));
 		
 		// 버튼 - 각각의 창 링크 
 		JButton product = new JButton("재고 관리");
