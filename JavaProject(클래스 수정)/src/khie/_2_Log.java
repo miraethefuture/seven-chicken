@@ -15,22 +15,22 @@ import java.sql.SQLException;
 import javax.swing.*;
 
 public class _2_Log extends JFrame {
-	
+
 	Connection con = null;				// DB와 연결하는 객체
 	PreparedStatement pstmt = null;		// SQL문을 DB에 전송하는 객체
 	ResultSet rs = null;				// SQL문 실행결과를 가지고 있는 객체
 	String sql = null;
-	
-	JTextField jtf1, jtf2;
-	
 
-	
+	JTextField jtf1, jtf2;
+
+
+
 	public _2_Log() {
 
 		setTitle("SEVEN 치킨 주문");
-		
+
 		JPanel title = new JPanel();
-		
+
 		// title container에 들어갈 컴포넌트를 만들자
 		JLabel login = new JLabel("로그인 화면");
 		login.setFont(new Font("맑은 고딕", Font.BOLD, 25));
@@ -55,11 +55,11 @@ public class _2_Log extends JFrame {
 		JPanel pwdPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		JLabel jl2 = new JLabel("비밀번호 : ", JLabel.CENTER);
 		pwdPanel.add(jl2);
-		
+
 		JPanel pwdPanel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		jtf2 = new JTextField(10);
 		pwdPanel2.add(jtf2);
-		
+
 		container.add(pwdPanel);
 		container.add(pwdPanel2);
 
@@ -68,27 +68,27 @@ public class _2_Log extends JFrame {
 
 		JPanel joinPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JButton join = new JButton("회원가입");
-		
+
 		JPanel findPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		JButton findMem = new JButton("회원 정보 찾기");
 
 		JPanel managerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JButton manager = new JButton("관리자 모드");
-		
+
 		JPanel nonmemberPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JButton nm = new JButton("비회원 주문");
-		
+
 		loginPanel.add(jlogin);
 		joinPanel.add(join);
 		findPanel.add(findMem);
 		managerPanel.add(manager);
 		nonmemberPanel.add(nm);
-		
+
 		container.add(loginPanel);
 		container.add(joinPanel);
 		container.add(findPanel);
 		container.add(managerPanel);
-		
+
 
 		JPanel jp2 = new JPanel();
 
@@ -104,67 +104,74 @@ public class _2_Log extends JFrame {
 		setBounds(200, 200, 400, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		
+
 		connect();
-		
-		
+
+
+		// 이벤트 처리
 		// 이벤트 처리
 		jlogin.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				Login();
-				// new menu();
-				
+
+				String pwd = Login(jtf1.getText());
+
+				if(pwd.equals(jtf2.getText())) {
+					JOptionPane.showMessageDialog(null, "성공");
+				}else {
+					JOptionPane.showMessageDialog(null, "실패");
+				}
+
+
 			}
 		});
-		
+
 
 		join.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				new _3_Join();
 				dispose();
-				
+
 			}
 		});
-		
+
 		findMem.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				new _4_FindMem();
 				dispose();
-				
+
 			}
 		});
-		
+
 		manager.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
+
+
 			}
 		});
-		
+
 		nm.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				// new Menu();
-				
+
 			}
 		});
 
 	}
-	
-	
+
+
 	void connect() {
 
 		String driver = "oracle.jdbc.driver.OracleDriver";
@@ -186,24 +193,24 @@ public class _2_Log extends JFrame {
 			e.printStackTrace();
 		}
 	}	// connect() 메서드 end
-	
-	
+
+
 	void Login() {
-				
+
 		try {
 			sql = "select * from membertable where mem_id = ?, mem_pwd = ?";
-			
+
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, jtf1.getText());
 			pstmt.setString(2, jtf2.getText());
-			
+
 			rs = pstmt.executeQuery();
 
 			if(rs.next()) {
 				JOptionPane.showMessageDialog(null, "로그인 성공");
 			}
-			
-			rs.close(); pstmt.close(); 
+
+			rs.close(); pstmt.close();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -211,10 +218,10 @@ public class _2_Log extends JFrame {
 		}
 
 	}	// Login() 메서드 end
-	
+
 
 	public static void main(String[] args) {
-		
+
 		new _2_Log();
 
 	}

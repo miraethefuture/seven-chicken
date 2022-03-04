@@ -1,4 +1,3 @@
-<<<<<<< HEAD:JavaProject/src/khie/_9_Counter.java
 package khie;
 
 import java.awt.BorderLayout;
@@ -162,4 +161,3 @@ public class Counter extends JFrame{
 	}
 
 }
->>>>>>> 385a6d723507651dc13572916361c858f213d4b0:JavaProject/src/khie/Counter.java

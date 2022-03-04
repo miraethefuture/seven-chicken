@@ -1,4 +1,4 @@
-<<<<<<< HEAD:JavaProject/src/khie/_B_Card_02.java
+
 package khie;
 
 import java.awt.BorderLayout;
@@ -235,7 +235,7 @@ import javax.swing.table.DefaultTableModel;
 
 import oracle.jdbc.driver.DBConversion;
 
-public class Card_02 extends JFrame{
+public class _B_Card_02 extends JFrame{
 	
 	Connection con = null;                  // DB와 연결하는 객체
 	PreparedStatement pstmt = null;         // SQL문을 DB에 전송하는 객체
