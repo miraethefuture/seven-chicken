@@ -154,7 +154,7 @@ public class _3_Join extends JFrame {
 	void insert() {
 		
 		try {
-			sql = "insert into membertable values(null, ?, ?, ?, '100', ?, ?)";
+			sql = "insert into membertable values(member_seq.nextval, ?, ?, ?, '100', ?, ?)";
 			
 			pstmt = con.prepareStatement(sql);
 			
