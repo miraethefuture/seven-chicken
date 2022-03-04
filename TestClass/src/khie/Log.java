@@ -70,7 +70,7 @@ public class Log extends JFrame {
 		JButton join = new JButton("회원가입");
 		
 		JPanel findPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		JButton findId = new JButton("아이디 찾기");
+		JButton findMem = new JButton("회원 정보 찾기");
 
 		JPanel managerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JButton manager = new JButton("관리자 모드");
@@ -80,7 +80,7 @@ public class Log extends JFrame {
 		
 		loginPanel.add(jlogin);
 		joinPanel.add(join);
-		findPanel.add(findId);
+		findPanel.add(findMem);
 		managerPanel.add(manager);
 		nonmemberPanel.add(nm);
 		
@@ -115,7 +115,7 @@ public class Log extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				Login();
-				
+				// new menu();
 				
 			}
 		});
@@ -132,7 +132,7 @@ public class Log extends JFrame {
 			}
 		});
 		
-		findId.addActionListener(new ActionListener() {
+		findMem.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -198,8 +198,6 @@ public class Log extends JFrame {
 
 			if(rs.next()) {
 				JOptionPane.showMessageDialog(null, "로그인 성공");
-			}else {
-				JOptionPane.showMessageDialog(null, "로그인 실패");
 			}
 			
 			rs.close(); pstmt.close(); 
@@ -209,8 +207,6 @@ public class Log extends JFrame {
 			e.printStackTrace();
 		}
 
-		
-		
 	}	// Login() 메서드 end
 	
 
