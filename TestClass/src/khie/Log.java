@@ -54,12 +54,12 @@ public class Log extends JFrame {
 
 		JPanel pwdPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		JLabel jl2 = new JLabel("비밀번호 : ", JLabel.CENTER);
-
+		pwdPanel.add(jl2);
+		
 		JPanel pwdPanel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		jtf2 = new JTextField(10);
-
-		pwdPanel.add(jl2);
 		pwdPanel2.add(jtf2);
+		
 		container.add(pwdPanel);
 		container.add(pwdPanel2);
 
@@ -96,7 +96,6 @@ public class Log extends JFrame {
 
 		jp2.add(container);
 
-		setLayout(new BorderLayout());
 
 		add(title, BorderLayout.NORTH);
 		add(jp2, BorderLayout.CENTER);
@@ -139,6 +138,7 @@ public class Log extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				new FindMem();
+				dispose();
 				
 			}
 		});
