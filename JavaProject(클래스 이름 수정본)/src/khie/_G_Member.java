@@ -26,7 +26,7 @@ public class _G_Member extends JFrame {
 	JTextField jtf4;
 	JTextField jtf5;
 	JTextField jtf6;
-	JTextField jtf7;
+
 	
 	JTable table;
 	
