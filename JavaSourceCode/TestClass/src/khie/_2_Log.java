@@ -116,8 +116,9 @@ public class _2_Log extends JFrame {
 				
 				String pwd = Login(jtf1.getText());
 				
+				updateCounttoZero();
+				
 				if(pwd.equals(jtf2.getText())) {
-					
 					confirm();
 					new _6_Menu();
 					dispose();
@@ -169,6 +170,7 @@ public class _2_Log extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				nonmem();
+				updateCounttoZero();
 				new _6_Menu();
 				dispose();
 			}
@@ -225,7 +227,7 @@ public class _2_Log extends JFrame {
 	}
 	
 	void confirm() {
-			
+		
 		try {
 			sql = "insert into login_info values (logininfo_seq.nextval, ?)";
 			
@@ -237,8 +239,6 @@ public class _2_Log extends JFrame {
 			
 			if(res > 0) {
 				JOptionPane.showMessageDialog(null, "로그인 성공");
-			}else {
-				JOptionPane.showMessageDialog(null, "로그인 실패");
 			}
 			
 			pstmt.close();
@@ -260,9 +260,7 @@ public class _2_Log extends JFrame {
 			int res = pstmt.executeUpdate();
 			
 			if(res > 0) {
-				JOptionPane.showMessageDialog(null, "insert 성공");
-			}else {
-				JOptionPane.showMessageDialog(null, "insert 실패");
+				JOptionPane.showMessageDialog(null, "비회원 주문");
 			}
 			
 			pstmt.close();
@@ -273,6 +271,26 @@ public class _2_Log extends JFrame {
 		}
 
 	}
+	
+	// 처음 실행 시 주문수량을 0으로 변경.
+	void updateCounttoZero() {
+	
+		try {
+			sql = "update menutable set Menu_count = ? where Menu_count > 0";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, 0);
+			
+			int res = pstmt.executeUpdate();
+						
+			pstmt.close();  // con.close();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}	// updateCounttoZero() 메서드 end
 	
 
 	public static void main(String[] args) {
