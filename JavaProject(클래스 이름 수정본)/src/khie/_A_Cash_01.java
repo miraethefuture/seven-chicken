@@ -227,7 +227,7 @@ public class _A_Cash_01 extends JFrame{
 
 	public static void main(String[] args) {
 
-	     new _A_Cash_01();
+	    new _A_Cash_01();
 
 
 	}

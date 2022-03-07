@@ -325,9 +325,9 @@ public class _H_Product extends JFrame {
 			int res = pstmt.executeUpdate();
 			
 			if(res > 0) {
-				JOptionPane.showMessageDialog(null, "업데이트 성공");
+				JOptionPane.showMessageDialog(null, "메뉴 수정 성공");
 			} else {
-				JOptionPane.showMessageDialog(null, "업데이트 실패");
+				JOptionPane.showMessageDialog(null, "메뉴 수정 실패");
 			}
 			
 			pstmt.close(); 
@@ -357,11 +357,11 @@ public class _H_Product extends JFrame {
 			
 			if(res > 0) {
 				
-				JOptionPane.showMessageDialog(null, "삭제 성공");
+				JOptionPane.showMessageDialog(null, "메뉴 삭제 성공");
 			
 			} else {
 				
-				JOptionPane.showMessageDialog(null, "삭제 실패");
+				JOptionPane.showMessageDialog(null, "메뉴 삭제 실패");
 				
 			}
 			

@@ -22,13 +22,15 @@ public class _G_Member extends JFrame {
 	
 	JTextField jtf1;
 	JTextField jtf2;
-	JTextField jtf3;
-	JPasswordField jtf4;
+	JPasswordField jtf3;
+	JTextField jtf4;
 	JTextField jtf5;
 	JTextField jtf6;
 	JTextField jtf7;
 	
 	JTable table;
+	
+	int row;
 	
 	public _G_Member() {
 		
@@ -41,27 +43,27 @@ public class _G_Member extends JFrame {
 		
 		// 컴포넌트
 		// 상단 부분 라벨과 텍스트 필드
-		JLabel jlb1 = new JLabel("주문번호 : ");
-		jtf1 = new JTextField(10);
+//		JLabel jlb1 = new JLabel("회원 번호 : "); 시퀀스 넘버 추가로 주석 처리
+//		jtf1 = new JTextField(10);
 		
-		JLabel jlb2 = new JLabel("회원 이름 : ");
-		jtf2 = new JTextField(7);
+		JLabel jlb1 = new JLabel("회원 이름 : ");
+		jtf1 = new JTextField(7);
 		
-		JLabel jlb3 = new JLabel("아이디 : ");
-		jtf3 = new JTextField(10);
+		JLabel jlb2 = new JLabel("아이디 : ");
+		jtf2 = new JTextField(10);
 		
-		JLabel jlb4 = new JLabel("비밀번호 : ");
+		JLabel jlb3 = new JLabel("비밀번호 : ");
 //		jtf4 = new JTextField(10);
-		jtf4 = new JPasswordField(10);
+		jtf3 = new JPasswordField(10);
 		
-		JLabel jlb5 = new JLabel("포인트 : ");
-		jtf5 = new JTextField(10);
+		JLabel jlb4 = new JLabel("포인트 : ");
+		jtf4 = new JTextField(10);
 		
-		JLabel jlb6 = new JLabel("주 소 : ");
-		jtf6 = new JTextField(20);
+		JLabel jlb5 = new JLabel("주 소 : ");
+		jtf5 = new JTextField(20);
 		
-		JLabel jlb7 = new JLabel("연락처 : ");
-		jtf7 = new JTextField(15);
+		JLabel jlb6 = new JLabel("연락처 : ");
+		jtf6 = new JTextField(15);
 		
 		
 		// text area
@@ -88,7 +90,7 @@ public class _G_Member extends JFrame {
 		
 		container2.add(jlb5); container2.add(jtf5);
 		container2.add(jlb6); container2.add(jtf6);
-		container2.add(jlb7); container2.add(jtf7);
+//		container2.add(jlb7); container2.add(jtf7);
 		
 		container3.add(jb1);
 		container3.add(jb2);
@@ -127,7 +129,7 @@ public class _G_Member extends JFrame {
 			}
 		});
 		
-		// 메뉴 등록
+		// 회원 등록
 		jb2.addActionListener(new ActionListener() {
 			
 			@Override
@@ -141,7 +143,7 @@ public class _G_Member extends JFrame {
 				jtf4.setText("");
 				jtf5.setText("");
 				jtf6.setText("");
-				jtf7.setText("");
+				
 				
 				jtf1.requestFocus();
 				model.setRowCount(0); 
@@ -151,7 +153,7 @@ public class _G_Member extends JFrame {
 			}
 		});
 		
-		// 메뉴 수정
+		// 회원 수정
 		jb3.addActionListener(new ActionListener() {
 			
 			@Override
@@ -166,7 +168,7 @@ public class _G_Member extends JFrame {
 				jtf4.setText("");
 				jtf5.setText("");
 				jtf6.setText("");
-				jtf7.setText("");
+			
 				
 				jtf1.requestFocus();
 				model.setRowCount(0); 
@@ -176,7 +178,7 @@ public class _G_Member extends JFrame {
 			}
 		});
 		
-		// 메뉴 삭제
+		// 회원 삭제
 		jb4.addActionListener(new ActionListener() {
 			
 			@Override
@@ -198,8 +200,8 @@ public class _G_Member extends JFrame {
 					jtf4.setText("");
 					jtf5.setText("");
 					jtf6.setText("");
-					jtf7.setText("");
-					jtf1.requestFocus();
+					
+				
 				}
 			}
 		});
@@ -233,13 +235,13 @@ public class _G_Member extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				int row = table.getSelectedRow();
-				jtf1.setText(model.getValueAt(row, 0).toString());
-				jtf2.setText(model.getValueAt(row, 1).toString());
-				jtf3.setText(model.getValueAt(row, 2).toString());
-				jtf4.setText(model.getValueAt(row, 3).toString());
-				jtf5.setText(model.getValueAt(row, 4).toString());
-				jtf6.setText(model.getValueAt(row, 5).toString());
-				jtf7.setText(model.getValueAt(row, 6).toString());
+				jtf1.setText(model.getValueAt(row, 1).toString());
+				jtf2.setText(model.getValueAt(row, 2).toString());
+				jtf3.setText(model.getValueAt(row, 3).toString());
+				jtf4.setText(model.getValueAt(row, 4).toString());
+				jtf5.setText(model.getValueAt(row, 5).toString());
+				jtf6.setText(model.getValueAt(row, 6).toString());
+			
 				
 			}
 		});
@@ -285,7 +287,7 @@ public class _G_Member extends JFrame {
 		
 		try {
 			
-			sql = "select * from membertable order by mem_name"; 
+			sql = "select * from membertable order by mem_no"; 
 			
 			// SQL 문을 전송하자. 
 			pstmt = con.prepareStatement(sql);
@@ -328,26 +330,26 @@ public class _G_Member extends JFrame {
 		
 		try {
 		
-			sql = "insert into membertable values(?, ?, ?, ?, ?, ?, ?)";
+			sql = "insert into membertable values(member_seq.nextval, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, Integer.parseInt(jtf1.getText()));
+//			pstmt.setInt(1, Integer.parseInt(jtf1.getText()));
+			pstmt.setString(1, jtf1.getText());
 			pstmt.setString(2, jtf2.getText());
 			pstmt.setString(3, jtf3.getText());
-			pstmt.setString(4, jtf4.getText());
-			pstmt.setInt(5, Integer.parseInt(jtf5.getText())); 
+			pstmt.setInt(4, Integer.parseInt(jtf4.getText())); 
+			pstmt.setString(5, jtf5.getText());
 			pstmt.setString(6, jtf6.getText());
-			pstmt.setString(7, jtf7.getText());
 			
 			
 			int res = pstmt.executeUpdate();
 			
 			if(res > 0) {
 				
-				JOptionPane.showMessageDialog(null, "메뉴 등록 성공");
+				JOptionPane.showMessageDialog(null, "회원 등록 성공");
 				
 			} else {
-				JOptionPane.showMessageDialog(null, "메뉴 등록 실패");
+				JOptionPane.showMessageDialog(null, "회원 등록 실패");
 				
 			}
 			
@@ -366,28 +368,27 @@ public class _G_Member extends JFrame {
 		
 		
 		try {
-			sql = "update membertable set mem_no = ?, mem_name = ?, mem_id = ?, mem_pwd = ?, mem_point = ?, mem_addr = ?, mem_phone = ? where mem_name = ?"; 
+			sql = "update membertable set mem_name = ?, mem_id = ?, mem_pwd = ?, mem_point = ?, mem_addr = ?, mem_phone = ? where mem_name = ?"; 
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, Integer.parseInt(jtf1.getText()));
+			
+			pstmt.setString(1, jtf1.getText());
 			pstmt.setString(2, jtf2.getText());
 			pstmt.setString(3, jtf3.getText());
-			pstmt.setString(4, jtf4.getText());
-			pstmt.setInt(5, Integer.parseInt(jtf5.getText())); 
+			pstmt.setInt(4, Integer.parseInt(jtf4.getText())); 
+			pstmt.setString(5, jtf5.getText());
 			pstmt.setString(6, jtf6.getText());
-			pstmt.setString(7, jtf7.getText());
 			
 			int row = table.getSelectedRow(); 
-			
-			pstmt.setString(8, (String)model.getValueAt(row, 1)); 
+			pstmt.setString(7, (String)model.getValueAt(row, 1)); 
 			
 			
 			int res = pstmt.executeUpdate();
 			
 			if(res > 0) {
-				JOptionPane.showMessageDialog(null, "업데이트 성공");
+				JOptionPane.showMessageDialog(null, "회원 정보 변경 성공");
 			} else {
-				JOptionPane.showMessageDialog(null, "업데이트 실패");
+				JOptionPane.showMessageDialog(null, "회원 정보 변경 실패");
 			}
 			
 			pstmt.close(); 
@@ -417,11 +418,11 @@ public class _G_Member extends JFrame {
 			
 			if(res > 0) {
 				
-				JOptionPane.showMessageDialog(null, "삭제 성공");
+				JOptionPane.showMessageDialog(null, "회원 삭제 성공");
 			
 			} else {
 				
-				JOptionPane.showMessageDialog(null, "삭제 실패");
+				JOptionPane.showMessageDialog(null, "회원 삭제 실패");
 				
 			}
 			
