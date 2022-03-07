@@ -239,7 +239,7 @@ public class _H_Product extends JFrame {
 		
 		try {
 			
-			sql = "select * from menutable"; 
+			sql = "select * from menu_inven"; 
 			
 			// SQL 문을 전송하자. 
 			pstmt = con.prepareStatement(sql);
@@ -277,7 +277,7 @@ public class _H_Product extends JFrame {
 		
 		try {
 		
-			sql = "insert into menutable values(?, ?, ?)";
+			sql = "insert into menu_inven values(?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, jtf1.getText());
@@ -310,7 +310,7 @@ public class _H_Product extends JFrame {
 		
 		
 		try {
-			sql = "update menutable set menu_name = ?, menu_price = ?, menu_count = ? where menu_name = ?";
+			sql = "update menu_inven set menu_name = ?, menu_price = ?, menu_count = ? where menu_name = ?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, jtf1.getText());
@@ -345,7 +345,7 @@ public class _H_Product extends JFrame {
 		
 		
 		try {
-			sql = "delete from menutable where menu_name = ?";
+			sql = "delete from menu_inven where menu_name = ?";
 			pstmt = con.prepareStatement(sql);
 			
 			// 선택한 행 인덱스 번호가 반환됨
