@@ -16,7 +16,7 @@ import oracle.jdbc.driver.DBConversion;
 import sevenChicken.Mileage;
 
 
-public class Cash_01 extends JFrame{
+public class _A_Cash_01 extends JFrame{
 
 	Connection con = null;                  // DB와 연결하는 객체
 	PreparedStatement pstmt = null;         // SQL문을 DB에 전송하는 객체
