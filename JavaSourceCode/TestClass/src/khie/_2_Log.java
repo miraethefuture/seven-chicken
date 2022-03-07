@@ -118,6 +118,7 @@ public class _2_Log extends JFrame {
 				
 				if(pwd.equals(jtf2.getText())) {
 					new _6_Menu();
+					dispose();
 				}else {
 					JOptionPane.showMessageDialog(null, "아이디가 존재하지 않습니다.");
 				}
