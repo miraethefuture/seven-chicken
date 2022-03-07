@@ -13,17 +13,15 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import oracle.jdbc.driver.DBConversion;
+import sevenChicken.Mileage;
 
 
-public class _A_Cash_01 extends JFrame{
+public class Cash_01 extends JFrame{
 
 	Connection con = null;                  // DB와 연결하는 객체
 	PreparedStatement pstmt = null;         // SQL문을 DB에 전송하는 객체
 	ResultSet rs = null;                    // SQL문 실행 결과를 가지고 있는 객체
 	String sql = null;
-
-	JTextField jtf1;
-	JTextField jtf2;
 
 	int price = 0;
 	int mil = 0;
@@ -48,8 +46,6 @@ public class _A_Cash_01 extends JFrame{
 		select();
 
 		JLabel jl2 = new JLabel("결제 금액 : " + price);
-//		JTextField jtf1 = new JTextField(8);
-
 
 		JTextArea jta = new JTextArea(3,10);
 
@@ -99,27 +95,24 @@ public class _A_Cash_01 extends JFrame{
 				int total = price;
 				int mileage1 = Pm;
 
-				jta.append("결재금액 : " + String.format("%,d원", total)+"\n");
+				jta.append("결재금액 : " + String.format("%,d원", total)+"\n");				
 				jta.append("현재 마일리지 : " + String.format("%,d점", mileage1)+"\n");
 			}
 		});
-
+ 
         button2.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
 				connect();
 				select();
-				select2();
-
+				
 				int total = price;
                 int mileage1 = Pm;
                 int result =  total - mileage1;
-                int result1 =  mileage1 - total;
-
+                
 				jta.append("남은 금액 : " + String.format("%,d원", result)+"\n");
-				jta.append("남은 마일리지 : " + String.format("%,d점", result)+"\n");
 			}
 		});
 
@@ -131,24 +124,28 @@ public class _A_Cash_01 extends JFrame{
 				connect();
 				select();
 				select2();
-
+				
 				int money1 = Integer.parseInt(money.getText());
 				int total = price;
 				int mileage1 = Pm;
 				int result = price - Pm;
 				int result1 = money1-result;
-
+				int Pmileage = result/100;
+				
 				jta.append("입 금 액 : " + String.format("%,d원", money1)+"\n");
 				jta.append("잔     액 : " + String.format("%,d원", result1)+"\n");
+				jta.append("적립될 마일리지: " + String.format("%,d원", Pmileage)+"\n");
+				
+				
 			}
 		});
-
+		
 		button4.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				new _E_Mileage();
+				
+				new Mileage();
 				dispose();
 			}
 		});
@@ -157,18 +154,16 @@ public class _A_Cash_01 extends JFrame{
 
 			void connect() {
 
-				String driver = "oracle.jdbc.driver.OracleDriver";
+                	String driver = "oracle.jdbc.OracleDriver";
 
-				String url = "jdbc:oracle:thin:@192.168.0.4:1521:xe";
-
-				String user = "web";
-
-				String password = "1234";
+            		String url ="jdbc:oracle:thin:@192.168.123.116:1521:xe";
+                    String userid="web";
+                    String pwd ="1234";
 
 
         		try {
         			Class.forName(driver);
-        			con= DriverManager.getConnection(url, user, password);
+        			con= DriverManager.getConnection(url, userid, pwd);
 
         		} catch (Exception e) {
         			// TODO Auto-generated catch block
@@ -181,7 +176,7 @@ public class _A_Cash_01 extends JFrame{
 
 	    try {
 
-	    	sql = "select OUTPUT_PRICE from products where  PNUM = 9";
+	    	sql = "select order_total from ordertable where ORDER_NUM = 1";
 
 		     pstmt = con.prepareStatement(sql);
 
@@ -189,7 +184,7 @@ public class _A_Cash_01 extends JFrame{
 
 		    while(rs.next()) {
 
-		    	price = rs.getInt("OUTPUT_PRICE");
+		    	price = rs.getInt("order_total");
 
 		           }
 		      rs.close(); pstmt.close(); //con.close();
@@ -199,36 +194,74 @@ public class _A_Cash_01 extends JFrame{
 		       e.printStackTrace();
 	          }
             }
-
+     
+  // 포인트 조회 
      void select2() {
-
+    	
     	 try {
-
-    		sql = "select MILEAGE from products where  PNUM = 2";
-
+    		 
+    		sql = "select mem_point from membertable where mem_no = '1010'";
+    		 
 			pstmt = con.prepareStatement(sql);
-
+			
 			rs = pstmt.executeQuery();
-
+			
 			while(rs.next()) {
 
-		    	Pm = rs.getInt("MILEAGE");
+		    	Pm = rs.getInt("mem_point");
 
 		           }
-			 rs.close(); pstmt.close(); con.close();
-
+			 rs.close(); pstmt.close(); //con.close();
+			 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
      }
+     
+         void update() {
+    	 
+    	 try {
+    		sql = "update ordertable set paid ='결제완료'  where order_num = '1'";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
 
-
-
+			 rs.close(); pstmt.close(); //con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	 
+     }
+         
+         // 포인트 고객테이블에서 변경
+   //      void update2() {	 
+   //    	 
+   //      
+   //    	 try {
+   //      		sql = "update membertable set mem_point = '?' where order_num = '1'";
+   //  			pstmt = con.prepareStatement(sql);
+   //  			rs = pstmt.executeQuery();
+   //  			pstmt.setInt(mileage1);
+   //       
+   //          int res = pstmt.executeUpdate();
+   //  		
+   //  		if(res > 0) {
+   // 			JOptionPane.showMessageDialog(null, "사원 정보 수정 성공!!!");
+   //  		}else {
+   //      		JOptionPane.showMessageDialog(null, "사원 정보 수정 실패~~~");
+   //  		}
+   //  			 rs.close(); pstmt.close(); con.close();
+   //  		} catch (SQLException e) {
+   //  			// TODO Auto-generated catch block
+   //  			e.printStackTrace();
+   //  		}
+   //       }
+     
 	public static void main(String[] args) {
 
-	    new _A_Cash_01();
-
+	     new Cash_01();
+	    
 
 	}
 
