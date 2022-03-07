@@ -117,10 +117,13 @@ public class _2_Log extends JFrame {
 				String pwd = Login(jtf1.getText());
 				
 				if(pwd.equals(jtf2.getText())) {
+					
+					confirm();
 					new _6_Menu();
 					dispose();
 				}else {
 					JOptionPane.showMessageDialog(null, "아이디가 존재하지 않습니다.");
+					
 				}
 				
 			}
@@ -165,6 +168,7 @@ public class _2_Log extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				nonmem();
 				new _6_Menu();
 				dispose();
 			}
@@ -218,6 +222,56 @@ public class _2_Log extends JFrame {
 		 
 		return pwd;
 		
+	}
+	
+	void confirm() {
+			
+		try {
+			sql = "insert into login_info values (logininfo_seq.nextval, ?)";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, jtf1.getText());
+			
+			int res = pstmt.executeUpdate();
+			
+			if(res > 0) {
+				JOptionPane.showMessageDialog(null, "로그인 성공");
+			}else {
+				JOptionPane.showMessageDialog(null, "로그인 실패");
+			}
+			
+			pstmt.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	void nonmem() {
+		
+		try {
+			sql = "insert into login_info values (logininfo_seq.nextval, null)";
+			
+			pstmt = con.prepareStatement(sql);
+					
+			int res = pstmt.executeUpdate();
+			
+			if(res > 0) {
+				JOptionPane.showMessageDialog(null, "insert 성공");
+			}else {
+				JOptionPane.showMessageDialog(null, "insert 실패");
+			}
+			
+			pstmt.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	
 
