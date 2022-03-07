@@ -117,7 +117,7 @@ public class _2_Log extends JFrame {
 				String pwd = Login(jtf1.getText());
 				
 				if(pwd.equals(jtf2.getText())) {
-					//new _6_Menu();
+					new _6_Menu();
 				}else {
 					JOptionPane.showMessageDialog(null, "아이디가 존재하지 않습니다.");
 				}
@@ -153,7 +153,7 @@ public class _2_Log extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				//new _F_Admin();
+				new _F_Admin();
 				dispose();
 				
 			}
@@ -164,7 +164,7 @@ public class _2_Log extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				//new _6_Menu();
+				new _6_Menu();
 				dispose();
 			}
 		});
