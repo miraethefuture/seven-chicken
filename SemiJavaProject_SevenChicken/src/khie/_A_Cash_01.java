@@ -150,6 +150,7 @@ public class _A_Cash_01 extends JFrame{
 							
 							connect();
 							updatePaid();
+							updateMenuInven();
 							new _D_Money_01();
 							dispose();
 						}
@@ -267,6 +268,26 @@ public class _A_Cash_01 extends JFrame{
 			e1.printStackTrace();
 		}
  	}	// updatePaid() 메서드 end
+ 	
+ 	
+ 	
+ 	// 결제 성공 시 재고 수량 감소
+ 	void updateMenuInven() {
+ 		
+		try {
+			sql = "merge into menu_inven i using menutable t on (i.menu_name = t.menu_name) when matched then update set i.menu_count = (i.menu_count - t.menu_count)";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			int res = pstmt.executeUpdate();
+			
+			pstmt.close(); //con.close();
+			
+		} catch (SQLException e1) {
+			
+			e1.printStackTrace();
+		}
+ 	}	// updateMenuInven() 메서드 end
  	
  	
 //     public static void main(String[] args) {
