@@ -19,107 +19,14 @@ public class _E_Mileage extends JFrame{
 	String sql = null;
 	
 	int Pm = 0;
+	int price = 0;
+	int newMileage = 0;   // findId 와 updateNewMileage() 메서드에서 사용
+	String id = "";		  // findId 와 updateNewMileage() 메서드에서 사용
 	
 	public _E_Mileage() {
-	       
-		setTitle("마일리지(회원)");
 		
-		JPanel container1 = new JPanel();
-		JPanel container2 = new JPanel();
-		JPanel container3 = new JPanel();
-
-		JPanel container5 = new JPanel();
-		JPanel container6 = new JPanel();
-		JPanel container7 = new JPanel();
-		
-		JLabel jl1 = new JLabel("환영합니다 ");
-		JLabel jl2 = new JLabel("고객님");
-		JLabel jl3 = new JLabel("사용 가능 포인트");
-		
-		JTextArea jta = new JTextArea(3,10);
-		
-		JScrollPane jsp = new JScrollPane(
-				jta,
-				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		
-		JButton check = new JButton("마일리지 조회");
-		JButton change = new JButton("회원정보변경");
-		JButton logout = new JButton("로그아웃");
-		
-		container1.add(jl1);
-		container2.add(jl2);
-		
-		container3.add(jl3);
-
-		container5.add(check);
-		container6.add(change);
-		container7.add(logout);
-		
-		JPanel group1 = new JPanel(new BorderLayout());
-		JPanel group2 = new JPanel(new BorderLayout());
-		JPanel group3 = new JPanel(new BorderLayout());
-
-		group1.add(container1, BorderLayout.NORTH);
-		group1.add(container2, BorderLayout.SOUTH);
-		
-		group2.add(container3,BorderLayout.NORTH);
-		group2.add(jsp,BorderLayout.CENTER);
-			
-		group3.add(container5,BorderLayout.NORTH);
-		group3.add(container6,BorderLayout.CENTER);
-		group3.add(container7,BorderLayout.SOUTH);
-		
-		add(group1,BorderLayout.NORTH);
-		add(group2,BorderLayout.CENTER);
-		add(group3,BorderLayout.SOUTH);
-		
-		setBounds(400, 400, 250, 400);
-		
-
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		setVisible(true);
-		
-		check.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				connect();
-				select();
-
-				int mileage1 = Pm;	
-				
-				jta.append("현재 마일리지 : " + String.format("%,d점", mileage1)+"\n");
-			}
-		});
-		
-		change.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-			
-				//new
-				dispose();			
-			}
-		});
-		
-		
-		
-		
-		logout.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				//new  
-				dispose();
-			}
-		});
-		
+		connect();
+		findId();
 		
 	}
 	
@@ -127,8 +34,11 @@ public class _E_Mileage extends JFrame{
 	void connect() {
 
 		String driver = "oracle.jdbc.driver.OracleDriver";
+
 		String url = "jdbc:oracle:thin:@192.168.0.4:1521:xe";
+
 		String user = "web";
+
 		String password = "1234";
 
 		try {
@@ -144,33 +54,162 @@ public class _E_Mileage extends JFrame{
 	}	// connect() 메서드 end
 	
 	
-	void select() {
-     	
-   	 try {
-   		 
-   		sql = "select mem_point from membertable where mem_no = '1010'";
-   		 
-			pstmt = con.prepareStatement(sql);
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
+	void findId() {
 
-		    	Pm = rs.getInt("mem_point");
+		 id = "";
+		 int mileage = 0;  			// DB에서 마일리지 가져와서 할당
+		 int ordertotal = 0;        // DB에서 총 결제금액 가져와서 할당
+		 int mil = 0;				// 사용할 마일리지 입력 받아서 할당
 
-		           }
-			 rs.close(); pstmt.close(); con.close();
-			 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		 connect();
+
+		 try {
+
+		   sql = "select login_id from login_info where login_date = (select max(login_date) from login_info)";
+		   pstmt = con.prepareStatement(sql);
+		   rs = pstmt.executeQuery();
+
+		   while(rs.next()) {
+
+		     // 가장 최근에 로그인한 아이디 값 가져오기
+		       id = rs.getString("login_id");
+
+		       // 비회원 주문 버튼을 클린한 경우 "비회원"이 DB에 전달됨
+		       if(id.equals("비회원")) {
+
+		         JOptionPane.showMessageDialog(null, "비회원은 마일리지를 사용하실 수 없습니다.");
+
+		         // "비회원"이 아니라면 위에서 가져온 id 값을 이용 -> membertable에서 mem_point(마일리지)를 가져옴.
+		       } else {
+
+		        String getMemPoint = "select mem_point from membertable where mem_id = ?";
+		        pstmt = con.prepareStatement(getMemPoint);
+		        pstmt.setString(1, id);
+		        rs = pstmt.executeQuery();
+
+		        while(rs.next()) {
+
+		          mileage = rs.getInt("mem_point");
+
+		        } // while문 end
+
+		        int result = JOptionPane.showConfirmDialog(null, "보유하신 마일리지는 [ " + mileage + " ] 입니다. 사용하시겠습니까?", "마일리지 사용", JOptionPane.YES_NO_OPTION);
+
+		        if(result == JOptionPane.YES_OPTION) {
+
+		          // 다이얼로그로 사용할 만큼의 마일리지 입력 받기
+		          String mileageAmount = JOptionPane.showInputDialog("사용할 마일리지를 입력하세요. ");
+//		          JOptionPane.showMessageDialog(null, "사용할 마일리지는 [ " + mileageAmount + " ] 입니다.");
+		          mil = Integer.parseInt(mileageAmount); 	// 입력 받은 값을 정수로 변환하여 할
+
+		          // 총 결제가격 가져오기
+		          String getOrderTotal = "select * from ordertable where order_date = (select max(order_date) from ordertable)";
+		          pstmt = con.prepareStatement(getOrderTotal);
+		          rs = pstmt.executeQuery();
+
+		          while(rs.next()) {
+
+		            ordertotal= rs.getInt("order_total");
+		          }
+
+		          price = (ordertotal - mil);	// 마일리지 사용 후 총 결제 금액
+		          updateTotalPrice();
+		          
+		          
+		          newMileage = (mileage - mil);		// 사용하고 남은 마일리지
+		          updateNewMileage();
+
+
+
+
+		        } else if(result == JOptionPane.NO_OPTION) {
+		        JOptionPane.showMessageDialog(null, "마일리지 사용 취소");
+
+		      }
+
+
+
+		      }
+		     }
+
+		   // 1. 계산 버튼 클릭 시 계산 되도록
+		   // 2. 거스름 돈 화면에 보이는지
+		   // 3. 변경된 마일리지 금액 데이터 베이스에 저장
+
+		 } catch (Exception e) {
+		  // TODO Auto-generated catch block
+		  e.printStackTrace();
 		}
-    }
+
+		} // findId 메서드
 	
-	public static void main(String[] args) {
-		
-      new _E_Mileage();
-      
-	}
+	
+		// 마일리지 사용 후 금액을 DB로 전송하는 메서드
+		void updateTotalPrice() {
+			
+			try {
+				  sql = "update ordertable set order_total = ? where order_date = (select max(order_date) from ordertable)";
+				  pstmt = con.prepareStatement(sql);
+
+				  pstmt.setInt(1, price); 		// 전역 변수 사용
+
+				  int res = pstmt.executeUpdate();
+
+				  if(res > 0) {
+				    JOptionPane.showMessageDialog(null, "마일리지 사용 성공");
+				  } else {
+				    JOptionPane.showMessageDialog(null, "마일리지 사용 실패");
+				  }
+
+				  pstmt.close();
+
+
+				} catch (SQLException e) {
+				  e.printStackTrace();
+				}
+
+			
+			
+		}
+
+		// 사용하고 남은 마일리지 DB에 전송하는 메서드
+		void updateNewMileage() {
+
+		  try {
+		  sql = "update membertable set mem_point = ? where mem_id = ?";
+		  pstmt = con.prepareStatement(sql);
+
+		  pstmt.setInt(1, newMileage); 		// 전역 변수 사용
+		  pstmt.setString(2, id); 			// 전역 변수 사용
+
+		  int res = pstmt.executeUpdate();
+
+		  if(res > 0) {
+		    JOptionPane.showMessageDialog(null, "남은 사용가능한 마일리지는 [ " + newMileage + " ] 입니다.");
+		  } else {
+		    JOptionPane.showMessageDialog(null, "업데이트 실패");
+		  }
+
+		  pstmt.close();
+
+
+		} catch (SQLException e) {
+		  e.printStackTrace();
+		}
+
+
+
+		} // updateNewMileage() end
+	
+	
+	
+	
+
+	
+	
+	//	public static void main(String[] args) {
+//		
+//      new _E_Mileage();
+//	}
 
 }
