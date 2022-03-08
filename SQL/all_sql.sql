@@ -13,8 +13,8 @@ insert into admintable values('park4567', '45674567');
 
 create table login_info (
     login_no number primary key,
-    login_id varchar2(20)
-    login_date varchar2(20) not null,
+    login_id varchar2(20),
+    login_date varchar2(20) not null
 );
 
 
