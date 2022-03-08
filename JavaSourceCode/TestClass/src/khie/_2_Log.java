@@ -114,18 +114,23 @@ public class _2_Log extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				String pwd = Login(jtf1.getText());
+				int re = Login(jtf1.getText(), jtf2.getText());
 				
-				
-				
-				if(pwd.equals(jtf2.getText())) {
+				// 로그인 성공
+				if(re == 1) {
 					confirm();
 					updateCounttoZero();
 					new _6_Menu();
 					dispose();
-				}else {
-					JOptionPane.showMessageDialog(null, "아이디가 존재하지 않습니다.");
-					
+				}
+				
+				// 비번 오류
+				else if(re == -1) {
+					JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.");
+				}
+				
+				else {
+					JOptionPane.showMessageDialog(null, "DB 오류가 발생했습니다.");
 				}
 				
 			}
@@ -200,32 +205,34 @@ public class _2_Log extends JFrame {
 	}	// connect() 메서드 end
 	
 	
-	// 로그인 시 id와 pwd가 DB와 일치하는지 확인
-	String Login(String str) {
-		
-		String pwd = "";
+	// 로그인 시 ID와 PWD가 DB와 일치하는지 확인
+	int Login(String id, String pwd) {
 		
 		try {
 			sql = "select mem_pwd from membertable where mem_id = ?";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, str);
+			
+			pstmt.setString(1, id);
 			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				pwd = rs.getString("mem_pwd");				
-			}
-			
-			rs.close(); pstmt.close(); 
+				if(rs.getString(1).equals(pwd)) {
+					return 1;	// 로그인 성공
+				} else {
+					return 0;	// 비밀번호 오류
+				}
+			}else {
+				return -1;	// 존재하지 않는 아이디
+			} 
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return -2;	// DB 오류
 		}
 		 
-		return pwd;
-		
 	}	// Login() 메서드 end
 	
 	
