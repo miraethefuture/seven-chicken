@@ -429,7 +429,7 @@ public class _A_Cash_01 extends JFrame{
    	 
    	 connect();
    	 
-   	 sql = "select login_id from login_info where login_no = (select max(login_no) from login_info)";
+   	 sql = "select login_id from login_info where login_date = (select max(login_date) from login_info)";
    	 
    	 try {
 			
