@@ -200,6 +200,7 @@ public class _2_Log extends JFrame {
 	}	// connect() 메서드 end
 	
 	
+	// 로그인 시 id와 pwd가 DB와 일치하는지 확인
 	String Login(String str) {
 		
 		String pwd = "";
@@ -225,10 +226,12 @@ public class _2_Log extends JFrame {
 		 
 		return pwd;
 		
-	}
+	}	// Login() 메서드 end
 	
+	
+	// 로그인 클릭시 login_info에 id값 입력하는 메서드
 	void confirm() {
-		
+			
 		try {
 			sql = "insert into login_info values (logininfo_seq.nextval, ?)";
 			
@@ -249,8 +252,10 @@ public class _2_Log extends JFrame {
 			e.printStackTrace();
 		}
 
-	}
+	}	// confirm() 메서드 end
 	
+	
+	// 비회원 주문 버튼 클릭시 메서드
 	void nonmem() {
 		
 		try {
@@ -271,13 +276,14 @@ public class _2_Log extends JFrame {
 			e.printStackTrace();
 		}
 
-	}
+	} // nonmem() 메서드 end
+	
 	
 	// 처음 실행 시 주문수량을 0으로 변경.
 	void updateCounttoZero() {
 	
 		try {
-			sql = "update menutable set Menu_count = 0 where Menu_count > 0";
+			sql = "update menutable set Menu_count = 0 where Menu_count >= 0";
 			
 			pstmt = con.prepareStatement(sql);
 			
