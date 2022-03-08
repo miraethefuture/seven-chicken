@@ -473,7 +473,7 @@ public class _A_Cash_01 extends JFrame{
        				JOptionPane.showMessageDialog(null, "사용할 마일리지는 [ " + mileageAmount + " ] 입니다.");
        				mil = Integer.parseInt(mileageAmount);
        				
-       				String sqlOrderTotal = "select * from ordertable where order_num = (select max(order_num) from ordertable)";
+       				String sqlOrderTotal = "select * from ordertable where order_date = (select max(order_date) from ordertable)";
        				
        				pstmt = con.prepareStatement(sqlOrderTotal);
        				rs = pstmt.executeQuery();
