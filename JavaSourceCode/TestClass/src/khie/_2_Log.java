@@ -238,7 +238,7 @@ public class _2_Log extends JFrame {
 			int res = pstmt.executeUpdate();
 			
 			if(res > 0) {
-				JOptionPane.showMessageDialog(null, "로그인 성공");
+				JOptionPane.showMessageDialog(null, "회원 주문");
 			}
 			
 			pstmt.close();
@@ -276,11 +276,9 @@ public class _2_Log extends JFrame {
 	void updateCounttoZero() {
 	
 		try {
-			sql = "update menutable set Menu_count = ? where Menu_count > 0";
+			sql = "update menutable set Menu_count = 0 where Menu_count > 0";
 			
 			pstmt = con.prepareStatement(sql);
-			
-			pstmt.setInt(1, 0);
 			
 			int res = pstmt.executeUpdate();
 						
