@@ -116,10 +116,11 @@ public class _2_Log extends JFrame {
 				
 				String pwd = Login(jtf1.getText());
 				
-				updateCounttoZero();
+				
 				
 				if(pwd.equals(jtf2.getText())) {
 					confirm();
+					updateCounttoZero();
 					new _6_Menu();
 					dispose();
 				}else {
