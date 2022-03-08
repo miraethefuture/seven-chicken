@@ -313,11 +313,13 @@ public class _A_Cash_01 extends JFrame{
 	// DB를 연동하는 메서드
 	public void connect() {
 		
-		String driver = "oracle.jdbc.OracleDriver";
-		
-		String url ="jdbc:oracle:thin:@db202202171628_high?TNS_ADMIN=/Users/mirae/Downloads/Wallet_DB202202171628";
-        String user	="admin";
-        String password ="Happari13121312";
+		String driver = "oracle.jdbc.driver.OracleDriver";
+
+		String url = "jdbc:oracle:thin:@192.168.0.4:1521:xe";
+
+		String user = "web";
+
+		String password = "1234";
 		
 		try {
 			// 1. 접속할 오라클 데이터베이스 드라이버를 메모리에 올리자. - 동적 작업
