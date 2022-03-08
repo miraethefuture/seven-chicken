@@ -128,8 +128,10 @@ public class _7_Cart extends JFrame{
 				
 				connect();
 				plus();
+				int i = table.getSelectedRow();
 				model.setRowCount(0);	// 전체 테이블 화면을 지워주는 메서드
 				select();
+				table.setRowSelectionInterval(i, i);
 			}
 		});
 		
@@ -141,8 +143,10 @@ public class _7_Cart extends JFrame{
 				
 				connect();
 				minus();
+				int i = table.getSelectedRow();
 				model.setRowCount(0);	// 전체 테이블 화면을 지워주는 메서드
 				select();
+				table.setRowSelectionInterval(i, i);
 			}
 		});
 		
