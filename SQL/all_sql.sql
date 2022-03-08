@@ -18,7 +18,7 @@ create table login_info (
 );
 
 
--- 로그인 테이블 생성
+-- 로그인 시퀀스 생성
 create sequence logininfo_seq
 start with 1
 increment by 1;
