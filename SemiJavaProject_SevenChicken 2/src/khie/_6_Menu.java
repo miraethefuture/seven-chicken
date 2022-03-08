@@ -17,8 +17,8 @@ public class _6_Menu extends JFrame{
 	
 	DecimalFormat formatter = new DecimalFormat("###,###");
 	
-	static int result = _2_Log.result;
-	static int count = _2_Log.count;
+	static int result = 0;
+	static int count = 0;
 	
 	Connection con = null;				// DB와 연결하는 객체
 	PreparedStatement pstmt = null;		// SQL문을 DB에 전송하는 객체
@@ -465,7 +465,7 @@ public class _6_Menu extends JFrame{
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
 	// 하단 버튼
-		cartBtn = new JButton("장바구니  " + count + "개");
+		cartBtn = new JButton("담은 목록");
 		JButton orderBtn = new JButton("결제하기");
 		JLabel emptyjlb = new JLabel("    ");
 		JLabel resultPriceText = new JLabel("                                  총 금액 : ");
@@ -1560,7 +1560,6 @@ public class _6_Menu extends JFrame{
 				// DB에 result 값 넘겨주기
 				connect();
 				menuResultToDB();
-				dispose();
 				new _9_Counter();	// 결제 화면
 			}
 		});

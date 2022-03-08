@@ -21,12 +21,7 @@ public class _2_Log extends JFrame {
 	ResultSet rs = null;				// SQL문 실행결과를 가지고 있는 객체
 	String sql = null;
 	
-	JTextField jtf1;
-	JPasswordField jtf2;
-	
-	static int count = 0;
-	static int result = 0;
-	
+	JTextField jtf1, jtf2;
 	
 
 	
@@ -62,7 +57,7 @@ public class _2_Log extends JFrame {
 		pwdPanel.add(jl2);
 		
 		JPanel pwdPanel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		jtf2 = new JPasswordField(10);
+		jtf2 = new JTextField(10);
 		pwdPanel2.add(jtf2);
 		
 		container.add(pwdPanel);
@@ -246,7 +241,7 @@ public class _2_Log extends JFrame {
 	void confirm() {
 			
 		try {
-			sql = "insert into login_info values (logininfo_seq.nextval, ?, sysdate || ' ' || TO_CHAR(SYSDATE, 'HH24:MI:SS'))";
+			sql = "insert into login_info values (logininfo_seq.nextval, ?)";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -272,7 +267,7 @@ public class _2_Log extends JFrame {
 	void nonmem() {
 		
 		try {
-			sql = "insert into login_info values (logininfo_seq.nextval, null, sysdate || ' ' || TO_CHAR(SYSDATE, 'HH24:MI:SS'))";
+			sql = "insert into login_info values (logininfo_seq.nextval, null)";
 			
 			pstmt = con.prepareStatement(sql);
 					

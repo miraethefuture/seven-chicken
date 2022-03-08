@@ -71,14 +71,12 @@ public class _7_Cart extends JFrame{
 		
 		// 하단 버튼, 총 금액
 		JButton plusBtn = new JButton("+");
-		JLabel emptyjlb = new JLabel("   ");
+		JLabel emptyjlb = new JLabel("    ");
 		JButton minusBtn = new JButton("-");
-		JLabel resultPriceText = new JLabel("    총 금액 : ");
-		resultPrice = new JLabel(formatter.format(result) + "원");
-		JLabel emptyjlb2 = new JLabel("   ");
-		JLabel emptyjlb3 = new JLabel("  ");
+		JLabel resultPriceText = new JLabel("        총 금액 : ");
+		resultPrice = new JLabel(formatter.format(_6_Menu.result) + "원");
+		JLabel emptyjlb2 = new JLabel("          ");
 		JButton orderBtn = new JButton("결제하기");
-		JButton toMenuBtn = new JButton("돌아가기");
 		
 		plusBtn.setFont(fontPlusMinus);
 		minusBtn.setFont(fontPlusMinus);
@@ -89,8 +87,6 @@ public class _7_Cart extends JFrame{
 		resultPrice.setFont(font);
 		orderBtn.setFont(font);
 		orderBtn.setBackground(Color.WHITE);
-		toMenuBtn.setFont(font);
-		toMenuBtn.setBackground(Color.WHITE);
 		
 		// 컴포넌트 올리기
 		container.add(plusBtn);
@@ -100,17 +96,14 @@ public class _7_Cart extends JFrame{
 		container.add(resultPrice);
 		container.add(emptyjlb2);
 		container.add(orderBtn);
-		container.add(emptyjlb3);
-		container.add(toMenuBtn);
 		container.setBackground(Color.WHITE);
-
 		
 		// 프레임에 올리기
 		add(jsp, BorderLayout.CENTER);
 		add(container, BorderLayout.SOUTH);
 		
 		// 창 설정
-		setBounds(300,300,500,400);
+		setBounds(300,300,400,400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
@@ -156,16 +149,6 @@ public class _7_Cart extends JFrame{
 				connect();
 				cartResultToDB();
 				new _9_Counter();	// 결제 화면
-			}
-		});
-		
-		// 메뉴로 돌아가기 버튼
-		toMenuBtn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				new _6_Menu();
 			}
 		});
 		
@@ -249,10 +232,6 @@ public class _7_Cart extends JFrame{
 		int price = (int)model.getValueAt(row, 1);	// 품목 가격
 		result = result + price;
 		resultPrice.setText(formatter.format(result) + "원");
-		_6_Menu.result = this.result;
-		_2_Log.result = _6_Menu.result;
-		_6_Menu.count++;
-		_2_Log.count = _6_Menu.count;
 		
 		
 	}	// plus() 메서드 end
@@ -285,11 +264,6 @@ public class _7_Cart extends JFrame{
 			int price = (int)model.getValueAt(row, 1);	// 품목 가격
 			result = result - price;
 			resultPrice.setText(formatter.format(result) + "원");
-			_6_Menu.result = this.result;
-			_2_Log.result = _6_Menu.result;
-			_6_Menu.count--;
-			_2_Log.count = _6_Menu.count;
-		
 		}
 	}	// minus() 메서드 end
 	

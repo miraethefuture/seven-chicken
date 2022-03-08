@@ -91,9 +91,7 @@ public class _9_Counter extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				new _6_Menu();
-				dispose();
-			
+			dispose();
 			}
 		});
 	   

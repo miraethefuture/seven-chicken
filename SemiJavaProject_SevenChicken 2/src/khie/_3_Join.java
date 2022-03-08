@@ -21,8 +21,7 @@ public class _3_Join extends JFrame {
 	ResultSet rs = null;				
 	String sql = null;	
 	
-	JTextField id, name, phone, addr;
-	JPasswordField pwd;
+	JTextField id, name, phone, addr, pwd;
 	
 	
 	public _3_Join() {
@@ -38,7 +37,7 @@ public class _3_Join extends JFrame {
 		JButton cancel = new JButton("취소");
 
 		id = new JTextField(10);
-		pwd = new JPasswordField(10);
+		pwd = new JTextField(10);
 		name = new JTextField(10);
 		phone = new JTextField(10);
 		addr = new JTextField(10);
