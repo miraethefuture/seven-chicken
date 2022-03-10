@@ -122,7 +122,7 @@ public class _B_Card_02 extends JFrame{
 				new _E_Mileage();
 				connect();
 				getResultPrice();
-				
+				dispose();
 				new _B_Card_02();
 				
 			}
