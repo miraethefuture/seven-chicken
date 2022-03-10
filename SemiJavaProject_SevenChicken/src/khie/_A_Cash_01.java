@@ -131,7 +131,7 @@ public class _A_Cash_01 extends JFrame{
 				connect();
 				getResultPrice();
 				dispose();
-				new _B_Card_02();
+				new _A_Cash_01();
 				
 			}
 		});
