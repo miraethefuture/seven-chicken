@@ -219,32 +219,25 @@ public class _2_Log extends JFrame {
 	}
 	
 	
-	// DB를 연동하는 메서드
-	public void connect() {
-		
+	// 민초님 connect()
+	void connect() {
+
 		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.0.4:1521:xe";
 		String user = "web";
 		String password = "1234";
-		
+
 		try {
-			// 1. 접속할 오라클 데이터베이스 드라이버를 메모리에 올리자. - 동적 작업
+			// 1. 접속할 오라클 데이터베이스 드라이버를 메모리에 올리자
 			Class.forName(driver);
-			
-			// 2. 오라클 데이터베이스와 연결 시도
+
+			// 2. 오라클 데이터베이스와 연결을 시도
 			con = DriverManager.getConnection(url, user, password);
-			
-//			if(con != null) {
-//				JOptionPane.showMessageDialog(null, "DB 연결 성공");
-//			} else {
-//				JOptionPane.showMessageDialog(null, "DB 연결 실패");
-//			}
-			
+
 		} catch (Exception e) {
-			
 			e.printStackTrace();
 		}
-	} // connect() 메소드 end
+	}	// connect() 메서드 end
 	
 	
 	// 로그인 시 ID와 PWD가 DB와 일치하는지 확인
