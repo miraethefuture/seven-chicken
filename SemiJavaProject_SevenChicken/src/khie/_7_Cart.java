@@ -259,6 +259,109 @@ public class _7_Cart extends JFrame{
 		_6_Menu.count++;
 		_2_Log.count = _6_Menu.count;
 		
+		switch((String)model.getValueAt(row, 0)) {
+			case "세븐치즈트러플" :
+				++_2_Log.cheesetrufflecount;
+				break;
+			case "세븐후라이드" :
+				++_2_Log.friedcount;
+				break;
+			case "세븐허니오리지날" :
+				++_2_Log.honeycount;
+				break;
+			case "세븐허니콤보" :
+				++_2_Log.honeycount;
+				break;
+			case "세븐오리지날" :
+				++_2_Log.originalcount;
+				break;
+			case "세븐오리지날반반" :
+				++_2_Log.originalhalfcount;
+				break;
+			case "세븐레드오리지날" :
+				++_2_Log.redcount;
+				break;
+			case "세븐레드콤보" :
+				++_2_Log.redcombocount;
+				break;
+			case "세븐레허반반" :
+				++_2_Log.redhoneyhalfcount;
+				break;
+			case "세븐살살치킨" :
+				++_2_Log.salsalcount;
+				break;
+			case "세븐신화오리지날" :
+				++_2_Log.shinhwacount;
+				break;
+			case "세븐시그니처세트" :
+				++_2_Log.signaturesetcount;
+				break;
+			case "세븐치즈볼" :
+				++_2_Log.cheeseballcount;
+				break;
+			case "세븐치킨버거" :
+				++_2_Log.chickenburgercount;
+				break;
+			case "세븐치킨카츠" :
+				++_2_Log.chickenkatzcount;
+				break;
+			case "세븐칠리포테이토" :
+				++_2_Log.chillypotatocount;
+				break;
+			case "세븐칩키사바" :
+				++_2_Log.chipcasabacount;
+				break;
+			case "세븐꽈배기" :
+				++_2_Log.gguabegicount;
+				break;
+			case "치킨무" :
+				++_2_Log.mucount;
+				break;
+			case "세븐웨지감자" :
+				++_2_Log.potatowedgescount;
+				break;
+			case "적피클" :
+				++_2_Log.redpicklecount;
+				break;
+			case "세븐샐러드" :
+				++_2_Log.saladcount;
+				break;
+			case "하바네로마요소스" :
+				++_2_Log.saucehabaneromayocount;
+				break;
+			case "허니갈릭소스" :
+				++_2_Log.saucehoneygarliccount;
+				break;
+			case "레드소스" :
+				++_2_Log.sauceredcount;
+				break;
+			case "스위트칠리소스" :
+				++_2_Log.saucesweetchillycount;
+				break;
+			case "타르타르소스" :
+				++_2_Log.saucetartarecount;
+				break;
+			case "코카콜라" :
+				++_2_Log.cokecount;
+				break;
+			case "스프라이트" :
+				++_2_Log.spritecount;
+				break;
+			case "환타" :
+				++_2_Log.fantacount;
+				break;
+			case "한라산맥주" :
+				++_2_Log.hanlasanbeercount;
+				break;
+			case "허니스파클링" :
+				++_2_Log.honeysparklingcount;
+				break;
+			case "생맥주" :
+				++_2_Log.draftbeercount;
+				break;
+			default :
+				break;
+		}	// switch문 end
 		
 	}	// plus() 메서드 end
 	
@@ -294,8 +397,111 @@ public class _7_Cart extends JFrame{
 			_2_Log.result = _6_Menu.result;
 			_6_Menu.count--;
 			_2_Log.count = _6_Menu.count;
-		
-		}
+			
+			switch((String)model.getValueAt(row, 0)) {
+			case "세븐치즈트러플" :
+				--_2_Log.cheesetrufflecount;
+				break;
+			case "세븐후라이드" :
+				--_2_Log.friedcount;
+				break;
+			case "세븐허니오리지날" :
+				--_2_Log.honeycount;
+				break;
+			case "세븐허니콤보" :
+				--_2_Log.honeycount;
+				break;
+			case "세븐오리지날" :
+				--_2_Log.originalcount;
+				break;
+			case "세븐오리지날반반" :
+				--_2_Log.originalhalfcount;
+				break;
+			case "세븐레드오리지날" :
+				--_2_Log.redcount;
+				break;
+			case "세븐레드콤보" :
+				--_2_Log.redcombocount;
+				break;
+			case "세븐레허반반" :
+				--_2_Log.redhoneyhalfcount;
+				break;
+			case "세븐살살치킨" :
+				--_2_Log.salsalcount;
+				break;
+			case "세븐신화오리지날" :
+				--_2_Log.shinhwacount;
+				break;
+			case "세븐시그니처세트" :
+				--_2_Log.signaturesetcount;
+				break;
+			case "세븐치즈볼" :
+				--_2_Log.cheeseballcount;
+				break;
+			case "세븐치킨버거" :
+				--_2_Log.chickenburgercount;
+				break;
+			case "세븐치킨카츠" :
+				--_2_Log.chickenkatzcount;
+				break;
+			case "세븐칠리포테이토" :
+				--_2_Log.chillypotatocount;
+				break;
+			case "세븐칩키사바" :
+				--_2_Log.chipcasabacount;
+				break;
+			case "세븐꽈배기" :
+				--_2_Log.gguabegicount;
+				break;
+			case "치킨무" :
+				--_2_Log.mucount;
+				break;
+			case "세븐웨지감자" :
+				--_2_Log.potatowedgescount;
+				break;
+			case "적피클" :
+				--_2_Log.redpicklecount;
+				break;
+			case "세븐샐러드" :
+				--_2_Log.saladcount;
+				break;
+			case "하바네로마요소스" :
+				--_2_Log.saucehabaneromayocount;
+				break;
+			case "허니갈릭소스" :
+				--_2_Log.saucehoneygarliccount;
+				break;
+			case "레드소스" :
+				--_2_Log.sauceredcount;
+				break;
+			case "스위트칠리소스" :
+				--_2_Log.saucesweetchillycount;
+				break;
+			case "타르타르소스" :
+				--_2_Log.saucetartarecount;
+				break;
+			case "코카콜라" :
+				--_2_Log.cokecount;
+				break;
+			case "스프라이트" :
+				--_2_Log.spritecount;
+				break;
+			case "환타" :
+				--_2_Log.fantacount;
+				break;
+			case "한라산맥주" :
+				--_2_Log.hanlasanbeercount;
+				break;
+			case "허니스파클링" :
+				--_2_Log.honeysparklingcount;
+				break;
+			case "생맥주" :
+				--_2_Log.draftbeercount;
+				break;
+			default :
+				break;
+			}	// switch문 end
+		}	// else문 end
 	}	// minus() 메서드 end
 	
 	// 결과값을 DB로 넘기는 메서드
@@ -312,11 +518,11 @@ public class _7_Cart extends JFrame{
 			// 2. 오라클 데이터베이스에 SQL문 전송 및 SQL문 실행.
 			int res = pstmt.executeUpdate();
 			
-			if(res > 0) {
-				JOptionPane.showMessageDialog(null, "결과 전송 성공");
-			} else {
-				JOptionPane.showMessageDialog(null, "결과 전송 실패");
-			}
+// 			if(res > 0) {
+// 				JOptionPane.showMessageDialog(null, "결과 전송 성공");
+// 			} else {
+// 				JOptionPane.showMessageDialog(null, "결과 전송 실패");
+// 			}
 			
 			// 3. 오라클 데이터베이스에 연결되어 있던 자원 종료.
 			pstmt.close();  con.close();
