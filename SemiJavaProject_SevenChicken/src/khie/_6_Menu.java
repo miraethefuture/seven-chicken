@@ -558,7 +558,8 @@ public class _6_Menu extends JFrame{
 				result += 19000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				cheesetrufflecount++;
+				++cheesetrufflecount;
+				_2_Log.cheesetrufflecount = cheesetrufflecount;
 				String name = "세븐치즈트러플";
 				
 				connect();
@@ -595,7 +596,8 @@ public class _6_Menu extends JFrame{
 				result += 17500;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				friedcount++;
+				++friedcount;
+				_2_Log.friedcount = friedcount;
 				
 				connect();
 				try {
@@ -626,7 +628,8 @@ public class _6_Menu extends JFrame{
 				result += 16000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				honeycount++;
+				++honeycount;
+				_2_Log.honeycount = honeycount;
 				
 				connect();
 				try {
@@ -656,7 +659,8 @@ public class _6_Menu extends JFrame{
 				result += 20000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				honeycombocount++;
+				++honeycombocount;
+				_2_Log.honeycombocount = honeycombocount;
 				
 				connect();
 				try {
@@ -686,7 +690,8 @@ public class _6_Menu extends JFrame{
 				result += 16000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				originalcount++;
+				++originalcount;
+				_2_Log.originalcount = originalcount;
 				
 				connect();
 				try {
@@ -716,7 +721,8 @@ public class _6_Menu extends JFrame{
 				result += 17000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				originalhalfcount++;
+				++originalhalfcount;
+				_2_Log.originalhalfcount = originalhalfcount;
 				
 				connect();
 				try {
@@ -746,7 +752,8 @@ public class _6_Menu extends JFrame{
 				result += 17000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				redcount++;
+				++redcount;
+				_2_Log.redcount = redcount;
 				
 				connect();
 				try {
@@ -776,7 +783,8 @@ public class _6_Menu extends JFrame{
 				result += 20000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				redcombocount++;
+				++redcombocount;
+				_2_Log.redcombocount = redcombocount;
 				
 				connect();
 				try {
@@ -806,7 +814,8 @@ public class _6_Menu extends JFrame{
 				result += 22000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				redhoneyhalfcount++;
+				++redhoneyhalfcount;
+				_2_Log.redhoneyhalfcount = redhoneyhalfcount;
 				
 				connect();
 				try {
@@ -836,7 +845,8 @@ public class _6_Menu extends JFrame{
 				result += 17000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				salsalcount++;
+				++salsalcount;
+				_2_Log.salsalcount = salsalcount;
 				
 				connect();
 				try {
@@ -866,7 +876,8 @@ public class _6_Menu extends JFrame{
 				result += 18000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				shinhwacount++;
+				++shinhwacount;
+				_2_Log.shinhwacount = shinhwacount;
 				
 				connect();
 				try {
@@ -896,7 +907,8 @@ public class _6_Menu extends JFrame{
 				result += 27500;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				signaturesetcount++;
+				++signaturesetcount;
+				_2_Log.signaturesetcount = signaturesetcount;
 				
 				connect();
 				try {
@@ -927,7 +939,8 @@ public class _6_Menu extends JFrame{
 				result += 5500;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				cheeseballcount++;
+				++cheeseballcount;
+				_2_Log.cheeseballcount = cheeseballcount;
 				
 				connect();
 				
@@ -958,7 +971,8 @@ public class _6_Menu extends JFrame{
 				result += 4900;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				chickenburgercount++;
+				++chickenburgercount;
+				_2_Log.chickenburgercount = chickenburgercount;
 				
 				connect();
 				try {
@@ -988,7 +1002,8 @@ public class _6_Menu extends JFrame{
 				result += 6000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				chickenkatzcount++;
+				++chickenkatzcount;
+				_2_Log.chickenkatzcount = chickenkatzcount;
 				
 				connect();
 				try {
@@ -1018,7 +1033,8 @@ public class _6_Menu extends JFrame{
 				result += 4000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				chillypotatocount++;
+				++chillypotatocount;
+				_2_Log.chillypotatocount = chillypotatocount;
 				
 				connect();
 				try {
@@ -1048,7 +1064,8 @@ public class _6_Menu extends JFrame{
 				result += 1500;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				chipcasabacount++;
+				++chipcasabacount;
+				_2_Log.chipcasabacount = chipcasabacount;
 				
 				connect();
 				try {
@@ -1078,7 +1095,8 @@ public class _6_Menu extends JFrame{
 				result += 3500;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				gguabegicount++;
+				++gguabegicount;
+				_2_Log.gguabegicount = gguabegicount;
 				
 				connect();
 				try {
@@ -1108,7 +1126,8 @@ public class _6_Menu extends JFrame{
 				result += 3500;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				potatowedgescount++;
+				++potatowedgescount;
+				_2_Log.potatowedgescount = potatowedgescount;
 				
 				connect();
 				try {
@@ -1138,7 +1157,8 @@ public class _6_Menu extends JFrame{
 				result += 500;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				mucount++;
+				++mucount;
+				_2_Log.mucount = mucount;
 				
 				connect();
 				try {
@@ -1168,7 +1188,8 @@ public class _6_Menu extends JFrame{
 				result += 1000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				redpicklecount++;
+				++redpicklecount;
+				_2_Log.redpicklecount = redpicklecount;
 				
 				connect();
 				try {
@@ -1198,7 +1219,8 @@ public class _6_Menu extends JFrame{
 				result += 5000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				saladcount++;
+				++saladcount;
+				_2_Log.saladcount = saladcount;
 				
 				connect();
 				try {
@@ -1228,7 +1250,8 @@ public class _6_Menu extends JFrame{
 				result += 1000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				saucehabaneromayocount++;
+				++saucehabaneromayocount;
+				_2_Log.saucehabaneromayocount = saucehabaneromayocount;
 				
 				connect();
 				try {
@@ -1258,7 +1281,8 @@ public class _6_Menu extends JFrame{
 				result += 1000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				saucehoneygarliccount++;
+				++saucehoneygarliccount;
+				_2_Log.saucehoneygarliccount = saucehoneygarliccount;
 				
 				connect();
 				try {
@@ -1288,7 +1312,8 @@ public class _6_Menu extends JFrame{
 				result += 1000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				sauceredcount++;
+				++sauceredcount;
+				_2_Log.sauceredcount = sauceredcount;
 				
 				connect();
 				try {
@@ -1319,7 +1344,8 @@ public class _6_Menu extends JFrame{
 				result += 1000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				saucesweetchillycount++;
+				++saucesweetchillycount;
+				_2_Log.saucesweetchillycount = saucesweetchillycount;
 				
 				connect();
 				try {
@@ -1349,7 +1375,8 @@ public class _6_Menu extends JFrame{
 				result += 1000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				saucetartarecount++;
+				++saucetartarecount;
+				_2_Log.saucetartarecount = saucetartarecount;
 				
 				connect();
 				try {
@@ -1380,7 +1407,8 @@ public class _6_Menu extends JFrame{
 				result += 2000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				cokecount++;
+				++cokecount;
+				_2_Log.cokecount = cokecount;
 				
 				connect();
 				try {
@@ -1410,7 +1438,8 @@ public class _6_Menu extends JFrame{
 				result += 2000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				spritecount++;
+				++spritecount;
+				_2_Log.spritecount = spritecount;
 				
 				connect();
 				try {
@@ -1440,7 +1469,8 @@ public class _6_Menu extends JFrame{
 				result += 2000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				fantacount++;
+				++fantacount;
+				_2_Log.fantacount = fantacount;
 				
 				connect();
 				try {
@@ -1470,7 +1500,8 @@ public class _6_Menu extends JFrame{
 				result += 11000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				hanlasanbeercount++;
+				++hanlasanbeercount;
+				_2_Log.hanlasanbeercount = hanlasanbeercount;
 				
 				connect();
 				try {
@@ -1500,7 +1531,8 @@ public class _6_Menu extends JFrame{
 				result += 3000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				honeysparklingcount++;
+				++honeysparklingcount;
+				_2_Log.honeysparklingcount = honeysparklingcount;
 				
 				connect();
 				try {
@@ -1530,7 +1562,8 @@ public class _6_Menu extends JFrame{
 				result += 7000;
 				resultPrice.setText(formatter.format(result) + "원");
 				cartBtn.setText("장바구니  " + count + "개");
-				draftbeercount++;
+				++draftbeercount;
+				_2_Log.draftbeercount = draftbeercount;
 				
 				connect();
 				try {
