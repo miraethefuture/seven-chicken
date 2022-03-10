@@ -1610,6 +1610,8 @@ public class _6_Menu extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				_2_Log.count = count;
+				_2_Log.result = result;
 				dispose();
 				new _7_Cart();
 			}
