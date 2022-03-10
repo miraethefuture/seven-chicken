@@ -276,7 +276,7 @@ public class _2_Log extends JFrame {
 	void nonmem() {
 		
 		try {
-			sql = "insert into login_info values (logininfo_seq.nextval, null, sysdate || ' ' || TO_CHAR(SYSDATE, 'HH24:MI:SS'))";
+			sql = "insert into login_info values (logininfo_seq.nextval, '비회원', sysdate || ' ' || TO_CHAR(SYSDATE, 'HH24:MI:SS'))";
 			
 			pstmt = con.prepareStatement(sql);
 					
