@@ -35,7 +35,7 @@ public class _2_Log extends JFrame {
 	static int cokecount = 0, spritecount = 0, fantacount = 0, hanlasanbeercount = 0, honeysparklingcount = 0, draftbeercount = 0;
 	
 	public _2_Log() {
-
+		
 		setTitle("SEVEN 치킨 주문");
 		
 		JPanel title = new JPanel();
@@ -116,6 +116,16 @@ public class _2_Log extends JFrame {
 		
 		connect();
 		
+
+		count = 0;
+		result = 0;
+		
+		cheesetrufflecount = 0; friedcount = 0; honeycount = 0; honeycombocount = 0; originalcount = 0; originalhalfcount = 0;
+				redcount = 0; redcombocount = 0; redhoneyhalfcount = 0; salsalcount = 0; shinhwacount = 0; signaturesetcount = 0;
+		cheeseballcount = 0; chickenburgercount = 0; chickenkatzcount = 0; chillypotatocount = 0; chipcasabacount = 0; gguabegicount = 0;
+					potatowedgescount = 0; mucount = 0; redpicklecount = 0; saladcount = 0; saucehabaneromayocount = 0; sauceredcount = 0; 
+					saucehoneygarliccount = 0; saucesweetchillycount = 0; saucetartarecount = 0;
+		cokecount = 0; spritecount = 0; fantacount = 0; hanlasanbeercount = 0; honeysparklingcount = 0; draftbeercount = 0;
 		
 		// 이벤트 처리
 		jlogin.addActionListener(new ActionListener() {
@@ -193,7 +203,7 @@ public class _2_Log extends JFrame {
 				
 			}
 		});
-		
+
 		nm.addActionListener(new ActionListener() {
 			
 			@Override
@@ -209,25 +219,32 @@ public class _2_Log extends JFrame {
 	}
 	
 	
-	// 민초님 connect()
-	void connect() {
-
+	// DB를 연동하는 메서드
+	public void connect() {
+		
 		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@192.168.0.4:1521:xe";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "web";
 		String password = "1234";
-
+		
 		try {
-			// 1. 접속할 오라클 데이터베이스 드라이버를 메모리에 올리자
+			// 1. 접속할 오라클 데이터베이스 드라이버를 메모리에 올리자. - 동적 작업
 			Class.forName(driver);
-
-			// 2. 오라클 데이터베이스와 연결을 시도
+			
+			// 2. 오라클 데이터베이스와 연결 시도
 			con = DriverManager.getConnection(url, user, password);
-
+			
+//			if(con != null) {
+//				JOptionPane.showMessageDialog(null, "DB 연결 성공");
+//			} else {
+//				JOptionPane.showMessageDialog(null, "DB 연결 실패");
+//			}
+			
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
-	}	// connect() 메서드 end
+	} // connect() 메소드 end
 	
 	
 	// 로그인 시 ID와 PWD가 DB와 일치하는지 확인
@@ -260,7 +277,7 @@ public class _2_Log extends JFrame {
 		 
 	}	// Login() 메서드 end
 	
-		// 관리자모드 입력 시  ID와 PWD가 일치하는지 확인
+	// 관리자모드 입력 시  ID와 PWD가 일치하는지 확인
 		int adminLogin(String id, String pwd) {
 
 			try {
@@ -326,9 +343,9 @@ public class _2_Log extends JFrame {
 					
 			int res = pstmt.executeUpdate();
 			
-// 			if(res > 0) {
-// 				JOptionPane.showMessageDialog(null, "비회원 주문");
-// 			}
+//			if(res > 0) {
+//				JOptionPane.showMessageDialog(null, "비회원 주문");
+//			}
 			
 			pstmt.close();
 			
