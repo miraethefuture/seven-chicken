@@ -168,13 +168,28 @@ public class _2_Log extends JFrame {
 			}
 		});
 		
+		// 관리자 모드 버튼을 눌렀을 시 실행 이벤트
 		manager.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				new _F_Admin();
-				dispose();
+				int re = adminLogin(jtf1.getText(), jtf2.getText());
+				// 로그인 성공
+				if(re == 1) {
+					new _F_Admin();
+					dispose();
+				}
+				
+				// 비번 오류
+				else if(re == -1) {
+					JOptionPane.showMessageDialog(null, "존재하지 않거나 관리자가 아닙니다.");
+				}
+				
+				else {
+					JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.");
+				}
+				
 				
 			}
 		});
@@ -245,6 +260,35 @@ public class _2_Log extends JFrame {
 		 
 	}	// Login() 메서드 end
 	
+		// 관리자모드 입력 시  ID와 PWD가 일치하는지 확인
+		int adminLogin(String id, String pwd) {
+
+			try {
+				sql = "select admin_pwd from admintable where admin_id = ?";
+
+				pstmt = con.prepareStatement(sql);
+
+				pstmt.setString(1, id);
+
+				rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					if (rs.getString(1).equals(pwd)) {
+						return 1; // 로그인 성공
+					} else {
+						return 0; // 비밀번호 오류
+					}
+				} else {
+					return -1; // 존재하지 않는 아이디
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return -2; // DB 오류
+			}
+
+		}	// adminLogin() 메서드 end
 	
 	// 로그인 클릭시 login_info에 id값 입력하는 메서드
 	void confirm() {
