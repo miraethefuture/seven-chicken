@@ -1697,11 +1697,11 @@ public class _6_Menu extends JFrame{
 			// 2. 오라클 데이터베이스에 SQL문 전송 및 SQL문 실행.
 			int res = pstmt.executeUpdate();
 			
-			if(res > 0) {
-				JOptionPane.showMessageDialog(null, "결과 전송 성공");
-			} else {
-				JOptionPane.showMessageDialog(null, "결과 전송 실패");
-			}
+// 			if(res > 0) {
+// 				JOptionPane.showMessageDialog(null, "결과 전송 성공");
+// 			} else {
+// 				JOptionPane.showMessageDialog(null, "결과 전송 실패");
+// 			}
 			
 			// 3. 오라클 데이터베이스에 연결되어 있던 자원 종료.
 			pstmt.close();  con.close();
