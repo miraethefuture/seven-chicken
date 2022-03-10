@@ -17,6 +17,7 @@ public class _F_Admin extends JFrame {
 		// 컨테이너
 		JPanel container1 = new JPanel();
 		JPanel container2 = new JPanel();
+		JPanel container3 = new JPanel();
 		
 		// 맨 위 제목
 		JLabel title = new JLabel("관리자 모드");
@@ -27,16 +28,18 @@ public class _F_Admin extends JFrame {
 		// 버튼 - 각각의 창 링크 
 		JButton product = new JButton("재고 관리");
 		JButton	member = new JButton("회원 관리");
+		JButton toLog = new JButton("로그인 화면으로");
 		
 		container1.add(title);
 		container2.add(product);
 		container2.add(member);
+		container3.add(toLog);
 		
 		add(container1, BorderLayout.NORTH);
 		add(container2, BorderLayout.CENTER);
+		add(container3, BorderLayout.SOUTH);
 		
-		
-		setBounds(200, 200, 300, 150);
+		setBounds(200, 200, 300, 170);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -63,6 +66,17 @@ public class _F_Admin extends JFrame {
 				new _G_Member();
 				dispose();
 			
+			}
+		});
+		
+		// 로그인 화면으로 버튼 클릭 시
+		toLog.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				new _2_Log();
+				dispose();
 			}
 		});
 		
