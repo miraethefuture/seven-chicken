@@ -120,8 +120,10 @@ public class _B_Card_02 extends JFrame{
 //				connect();
 //				getResultPrice();		
 				new _E_Mileage();
+				connect();
 				getResultPrice();
-				new _A_Cash_01();
+				dispose();
+				new _B_Card_02();
 				
 			}
 		});
