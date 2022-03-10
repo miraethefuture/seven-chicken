@@ -25,23 +25,23 @@ public class _6_Menu extends JFrame{
 	ResultSet rs = null;				// SQL문 실행 결과를 가지고 있는 객체
 	String sql = null;					// SQL문을 저장하는 문자열 변수.
 	
-	static int cheesetrufflecount = _2_Log.cheesetrufflecount, friedcount = _2_Log.friedcount, 
-			honeycount = _2_Log.honeycount, honeycombocount = _2_Log.honeycombocount, 
-			originalcount = _2_Log.originalcount, originalhalfcount = _2_Log.originalhalfcount,
-			redcount = _2_Log.redcount, redcombocount = _2_Log.redcombocount, 
-			redhoneyhalfcount = _2_Log.redhoneyhalfcount, salsalcount = _2_Log.salsalcount, 
-			shinhwacount = _2_Log.shinhwacount, signaturesetcount = _2_Log.signaturesetcount;
-	static int cheeseballcount = _2_Log.cheeseballcount, chickenburgercount = _2_Log.chickenburgercount, 
-			chickenkatzcount = _2_Log.chickenkatzcount, chillypotatocount = _2_Log.chillypotatocount, 
-			chipcasabacount = _2_Log.chipcasabacount, gguabegicount = _2_Log.gguabegicount,
-			potatowedgescount = _2_Log.potatowedgescount, mucount = _2_Log.mucount, 
-			redpicklecount = _2_Log.redpicklecount, saladcount = _2_Log.saladcount, 
-			saucehabaneromayocount = _2_Log.saucehabaneromayocount, sauceredcount = _2_Log.sauceredcount, 
-			saucehoneygarliccount = _2_Log.saucehoneygarliccount, saucesweetchillycount = _2_Log.saucesweetchillycount,
-			saucetartarecount = _2_Log.saucetartarecount;
-	static int cokecount = _2_Log.cokecount, spritecount = _2_Log.spritecount, fantacount = _2_Log.fantacount, 
-			hanlasanbeercount = _2_Log.hanlasanbeercount, honeysparklingcount = _2_Log.honeysparklingcount, 
-			draftbeercount = _2_Log.draftbeercount;
+	int cheesetrufflecount = _2_Log.cheesetrufflecount, friedcount = _2_Log.friedcount, 
+		honeycount = _2_Log.honeycount, honeycombocount = _2_Log.honeycombocount, 
+		originalcount = _2_Log.originalcount, originalhalfcount = _2_Log.originalhalfcount,
+		redcount = _2_Log.redcount, redcombocount = _2_Log.redcombocount, 
+		redhoneyhalfcount = _2_Log.redhoneyhalfcount, salsalcount = _2_Log.salsalcount, 
+		shinhwacount = _2_Log.shinhwacount, signaturesetcount = _2_Log.signaturesetcount;
+	int cheeseballcount = _2_Log.cheeseballcount, chickenburgercount = _2_Log.chickenburgercount, 
+		chickenkatzcount = _2_Log.chickenkatzcount, chillypotatocount = _2_Log.chillypotatocount, 
+		chipcasabacount = _2_Log.chipcasabacount, gguabegicount = _2_Log.gguabegicount,
+		potatowedgescount = _2_Log.potatowedgescount, mucount = _2_Log.mucount, 
+		redpicklecount = _2_Log.redpicklecount, saladcount = _2_Log.saladcount, 
+		saucehabaneromayocount = _2_Log.saucehabaneromayocount, sauceredcount = _2_Log.sauceredcount, 
+		saucehoneygarliccount = _2_Log.saucehoneygarliccount, saucesweetchillycount = _2_Log.saucesweetchillycount,
+		saucetartarecount = _2_Log.saucetartarecount;
+	int cokecount = _2_Log.cokecount, spritecount = _2_Log.spritecount, fantacount = _2_Log.fantacount, 
+		hanlasanbeercount = _2_Log.hanlasanbeercount, honeysparklingcount = _2_Log.honeysparklingcount, 
+		draftbeercount = _2_Log.draftbeercount;
 	
 	static JButton cartBtn;
 	
@@ -477,12 +477,19 @@ public class _6_Menu extends JFrame{
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
 	// 하단 버튼
+		result = _2_Log.result;
+		count = _2_Log.count;
+		
+		JButton toLog = new JButton("처음으로");
+		JLabel emptyjlb0 = new JLabel("    ");
 		cartBtn = new JButton("장바구니  " + count + "개");
 		JButton orderBtn = new JButton("결제하기");
 		JLabel emptyjlb = new JLabel("    ");
-		JLabel resultPriceText = new JLabel("                                  총 금액 : ");
+		JLabel resultPriceText = new JLabel("                           총 금액 : ");
 		JLabel resultPrice = new JLabel(formatter.format(result) + "원");
 		
+		toLog.setFont(font);
+		toLog.setBackground(Color.WHITE);
 		cartBtn.setFont(font);
 		cartBtn.setBackground(Color.WHITE);
 		orderBtn.setFont(font);
@@ -518,6 +525,8 @@ public class _6_Menu extends JFrame{
 		containerDrink.setBackground(Color.ORANGE);
 		
 		// 하단 버튼
+		southButton.add(toLog);
+		southButton.add(emptyjlb0);
 		southButton.add(cartBtn);
 		southButton.add(emptyjlb);
 		southButton.add(orderBtn);
@@ -1585,6 +1594,16 @@ public class _6_Menu extends JFrame{
 			}
 		});
 		
+		// 처음으로 버튼
+		toLog.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new _2_Log();
+				dispose();
+			}
+		});
+		
 		// 장바구니 버튼
 		cartBtn.addActionListener(new ActionListener() {
 			
@@ -1612,25 +1631,32 @@ public class _6_Menu extends JFrame{
 		
 	}	// 생성자 end
 	
-	// 민초님 connect()
-	void connect() {
-
+	// DB를 연동하는 메서드
+	public void connect() {
+		
 		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@192.168.0.4:1521:xe";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "web";
 		String password = "1234";
-
+		
 		try {
-			// 1. 접속할 오라클 데이터베이스 드라이버를 메모리에 올리자
+			// 1. 접속할 오라클 데이터베이스 드라이버를 메모리에 올리자. - 동적 작업
 			Class.forName(driver);
-
-			// 2. 오라클 데이터베이스와 연결을 시도
+			
+			// 2. 오라클 데이터베이스와 연결 시도
 			con = DriverManager.getConnection(url, user, password);
-
+			
+//			if(con != null) {
+//				JOptionPane.showMessageDialog(null, "DB 연결 성공");
+//			} else {
+//				JOptionPane.showMessageDialog(null, "DB 연결 실패");
+//			}
+			
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
-	}	// connect() 메서드 end
+	} // connect() 메소드 end
 	
 	// 초기화면으로 이동
 //	// 처음 실행 시 주문수량을 0으로 변경.
@@ -1696,12 +1722,12 @@ public class _6_Menu extends JFrame{
 
 			// 2. 오라클 데이터베이스에 SQL문 전송 및 SQL문 실행.
 			int res = pstmt.executeUpdate();
-			
-// 			if(res > 0) {
-// 				JOptionPane.showMessageDialog(null, "결과 전송 성공");
-// 			} else {
-// 				JOptionPane.showMessageDialog(null, "결과 전송 실패");
-// 			}
+		
+//			if(res > 0) {
+//				JOptionPane.showMessageDialog(null, "결과 전송 성공");
+//			} else {
+//				JOptionPane.showMessageDialog(null, "결과 전송 실패");
+//			}
 			
 			// 3. 오라클 데이터베이스에 연결되어 있던 자원 종료.
 			pstmt.close();  con.close();
@@ -1711,4 +1737,10 @@ public class _6_Menu extends JFrame{
 			e.printStackTrace();
 		}
 	}
+	
+//	// main
+//	public static void main(String[] args) {
+//		
+//		new _6_Menu();
+//	}
 }
