@@ -169,6 +169,7 @@ public class _7_Cart extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				dispose();
 				new _6_Menu();
 			}
 		});
