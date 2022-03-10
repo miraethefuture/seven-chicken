@@ -9,7 +9,9 @@ import java.sql.*;
 
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 
 public class _H_Product extends JFrame {
@@ -20,6 +22,7 @@ public class _H_Product extends JFrame {
 	String sql = null;
 	
 	DefaultTableModel model;
+	DefaultTableCellRenderer celAlignCenter = new DefaultTableCellRenderer();
 	
 	JTextField jtf1;
 	JTextField jtf2;
@@ -39,13 +42,13 @@ public class _H_Product extends JFrame {
 		// 컴포넌트
 		// 상단 부분 라벨과 텍스트 필드
 		JLabel jlb1 = new JLabel("메뉴명 : ");
-		jtf1 = new JTextField(10);
+		jtf1 = new JTextField(15);
 		
-		JLabel jlb2 = new JLabel("가 격 : ");
-		jtf2 = new JTextField(10);
+		JLabel jlb2 = new JLabel("   가 격 : ");
+		jtf2 = new JTextField(7);
 		
-		JLabel jlb3 = new JLabel("재고 수량 : ");
-		jtf3 = new JTextField(10);
+		JLabel jlb3 = new JLabel("   재고 수량 : ");
+		jtf3 = new JTextField(5);
 		
 		
 		// text area
@@ -54,7 +57,26 @@ public class _H_Product extends JFrame {
 		model = new DefaultTableModel(header, 0);
 		table = new JTable(model);
 		
+		// 테이블 셀 간격
+		table.getColumnModel().getColumn(0).setPreferredWidth(200);
+		table.getColumnModel().getColumn(1).setPreferredWidth(80);
+		table.getColumnModel().getColumn(2).setPreferredWidth(40);
+		table.setRowHeight(17);
+		
+		// table.setFont(font);
+		table.setSelectionBackground(Color.ORANGE);
+		
 		JScrollPane jsp = new JScrollPane(table, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		
+		// 테이블 가운데 정렬
+		celAlignCenter.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tableCenter = table.getColumnModel();
+		
+		for (int i = 0; i < tableCenter.getColumnCount(); i++) {
+			tableCenter.getColumn(i).setCellRenderer(celAlignCenter);
+			}
+
 
 		JButton jb1 = new JButton("전체 목록");
 		JButton jb2 = new JButton("메뉴 등록");
@@ -78,7 +100,7 @@ public class _H_Product extends JFrame {
 		add(container2, BorderLayout.SOUTH);
 		
 		
-		setBounds(200, 200, 800, 500);
+		setBounds(200, 200, 600, 400);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -255,8 +277,7 @@ public class _H_Product extends JFrame {
 				
 				// 저장한 한개의 레코드를 model에 추가
 				model.addRow(data);
-				
-				
+	
 			}
 			
 			rs.close(); pstmt.close(); con.close();
