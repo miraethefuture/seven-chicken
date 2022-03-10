@@ -254,9 +254,9 @@ public class _2_Log extends JFrame {
 			
 			int res = pstmt.executeUpdate();
 			
-			if(res > 0) {
-				JOptionPane.showMessageDialog(null, "회원 주문");
-			}
+//			if(res > 0) {
+//				JOptionPane.showMessageDialog(null, "회원 주문");
+//			}
 			
 			pstmt.close();
 			
@@ -278,9 +278,9 @@ public class _2_Log extends JFrame {
 					
 			int res = pstmt.executeUpdate();
 			
-			if(res > 0) {
-				JOptionPane.showMessageDialog(null, "비회원 주문");
-			}
+// 			if(res > 0) {
+// 				JOptionPane.showMessageDialog(null, "비회원 주문");
+// 			}
 			
 			pstmt.close();
 			
