@@ -27,8 +27,12 @@ public class _2_Log extends JFrame {
 	static int count = 0;
 	static int result = 0;
 	
-	
-
+	static int cheesetrufflecount = 0, friedcount = 0, honeycount = 0, honeycombocount = 0, originalcount = 0, originalhalfcount = 0,
+			redcount = 0, redcombocount = 0, redhoneyhalfcount = 0, salsalcount = 0, shinhwacount = 0, signaturesetcount = 0;
+	static int cheeseballcount = 0, chickenburgercount = 0, chickenkatzcount = 0, chillypotatocount = 0, chipcasabacount = 0, gguabegicount = 0,
+				potatowedgescount = 0, mucount = 0, redpicklecount = 0, saladcount = 0, saucehabaneromayocount = 0, sauceredcount = 0, 
+				saucehoneygarliccount = 0, saucesweetchillycount = 0, saucetartarecount = 0;
+	static int cokecount = 0, spritecount = 0, fantacount = 0, hanlasanbeercount = 0, honeysparklingcount = 0, draftbeercount = 0;
 	
 	public _2_Log() {
 
