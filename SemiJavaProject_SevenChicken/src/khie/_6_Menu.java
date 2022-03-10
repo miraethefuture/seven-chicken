@@ -25,12 +25,24 @@ public class _6_Menu extends JFrame{
 	ResultSet rs = null;				// SQL문 실행 결과를 가지고 있는 객체
 	String sql = null;					// SQL문을 저장하는 문자열 변수.
 	
-	static int cheesetrufflecount = 0, friedcount = 0, honeycount = 0, honeycombocount = 0, originalcount = 0, originalhalfcount = 0,
-				redcount = 0, redcombocount = 0, redhoneyhalfcount = 0, salsalcount = 0, shinhwacount = 0, signaturesetcount = 0;
-	static int cheeseballcount = 0, chickenburgercount = 0, chickenkatzcount = 0, chillypotatocount = 0, chipcasabacount = 0, gguabegicount = 0,
-				potatowedgescount = 0, mucount = 0, redpicklecount = 0, saladcount = 0, saucehabaneromayocount = 0, sauceredcount = 0, 
-				saucehoneygarliccount = 0, saucesweetchillycount = 0, saucetartarecount = 0;
-	static int cokecount = 0, spritecount = 0, fantacount = 0, hanlasanbeercount = 0, honeysparklingcount = 0, draftbeercount = 0;
+	static int cheesetrufflecount = _2_Log.cheesetrufflecount, friedcount = _2_Log.friedcount, 
+			honeycount = _2_Log.honeycount, honeycombocount = _2_Log.honeycombocount, 
+			originalcount = _2_Log.originalcount, originalhalfcount = _2_Log.originalhalfcount,
+			redcount = _2_Log.redcount, redcombocount = _2_Log.redcombocount, 
+			redhoneyhalfcount = _2_Log.redhoneyhalfcount, salsalcount = _2_Log.salsalcount, 
+			shinhwacount = _2_Log.shinhwacount, signaturesetcount = _2_Log.signaturesetcount;
+	static int cheeseballcount = _2_Log.cheeseballcount, chickenburgercount = _2_Log.chickenburgercount, 
+			chickenkatzcount = _2_Log.chickenkatzcount, chillypotatocount = _2_Log.chillypotatocount, 
+			chipcasabacount = _2_Log.chipcasabacount, gguabegicount = _2_Log.gguabegicount,
+			potatowedgescount = _2_Log.potatowedgescount, mucount = _2_Log.mucount, 
+			redpicklecount = _2_Log.redpicklecount, saladcount = _2_Log.saladcount, 
+			saucehabaneromayocount = _2_Log.saucehabaneromayocount, sauceredcount = _2_Log.sauceredcount, 
+			saucehoneygarliccount = _2_Log.saucehoneygarliccount, saucesweetchillycount = _2_Log.saucesweetchillycount,
+			saucetartarecount = _2_Log.saucetartarecount;
+	static int cokecount = _2_Log.cokecount, spritecount = _2_Log.spritecount, fantacount = _2_Log.fantacount, 
+			hanlasanbeercount = _2_Log.hanlasanbeercount, honeysparklingcount = _2_Log.honeysparklingcount, 
+			draftbeercount = _2_Log.draftbeercount;
+	
 	static JButton cartBtn;
 	
 	public _6_Menu() {
