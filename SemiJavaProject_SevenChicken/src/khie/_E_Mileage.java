@@ -89,7 +89,7 @@ public class _E_Mileage extends JFrame{
 
 		        while(rs.next()) {
 
-		          mileage = rs.getInt("mem_point");
+		        mileage = rs.getInt("mem_point");
 
 		        } // while문 end
 
@@ -99,25 +99,32 @@ public class _E_Mileage extends JFrame{
 
 		          // 다이얼로그로 사용할 만큼의 마일리지 입력 받기
 		          String mileageAmount = JOptionPane.showInputDialog("사용할 마일리지를 입력하세요. ");
-//		          JOptionPane.showMessageDialog(null, "사용할 마일리지는 [ " + mileageAmount + " ] 입니다.");
 		          mil = Integer.parseInt(mileageAmount); 	// 입력 받은 값을 정수로 변환하여 할
 
-		          // 총 결제가격 가져오기
-		          String getOrderTotal = "select * from ordertable where order_date = (select max(order_date) from ordertable)";
-		          pstmt = con.prepareStatement(getOrderTotal);
-		          rs = pstmt.executeQuery();
+		          // 사용 원하는 마일리지 > 보유 마일리지 ->경고창 
+		          // else -> 마일리지 사용 프로세스 작동
+		          
+		          if(mil > mileage) {
+		        	  JOptionPane.showMessageDialog(null, "마일리지가 부족합니다.");
+		          } else if(mil > 0) {
+		        	// 총 결제가격 가져오기
+			          String getOrderTotal = "select * from ordertable where order_date = (select max(order_date) from ordertable)";
+			          pstmt = con.prepareStatement(getOrderTotal);
+			          rs = pstmt.executeQuery();
 
-		          while(rs.next()) {
+			          while(rs.next()) {
 
-		            ordertotal= rs.getInt("order_total");
+			            ordertotal= rs.getInt("order_total");
+			          }
+
+			          price = (ordertotal - mil);	// 마일리지 사용 후 총 결제 금액
+			          updateTotalPrice();
+			          
+			          
+			          newMileage = (mileage - mil);		// 사용하고 남은 마일리지
+			          updateNewMileage();
+		        	  
 		          }
-
-		          price = (ordertotal - mil);	// 마일리지 사용 후 총 결제 금액
-		          updateTotalPrice();
-		          
-		          
-		          newMileage = (mileage - mil);		// 사용하고 남은 마일리지
-		          updateNewMileage();
 
 
 
