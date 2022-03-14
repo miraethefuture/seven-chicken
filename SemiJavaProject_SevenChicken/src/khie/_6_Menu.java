@@ -554,24 +554,34 @@ public class _6_Menu extends JFrame{
 		
 //		// 초기화면으로 이동
 //		updateCounttoZero();	// 주문수량 = 0으로 변경.
-//		commit();
-		
-		
+
 	// 이벤트 처리
 	// 치킨
 		cheeseTruffleBtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 19000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
-				++cheesetrufflecount;
-				_2_Log.cheesetrufflecount = cheesetrufflecount;
-				String name = "세븐치즈트러플";
 				
 				connect();
+				
+				int inven = getInven("세븐치즈트러플");
+				
+				++cheesetrufflecount;
+				_2_Log.cheesetrufflecount = cheesetrufflecount;
+
+				if(inven >= cheesetrufflecount) {
+					count++;
+					result += 19000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--cheesetrufflecount;
+					_2_Log.cheesetrufflecount = cheesetrufflecount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
+				String name = "세븐치즈트러플";
+				
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -601,14 +611,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 17500;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐후라이드");
+				
 				++friedcount;
 				_2_Log.friedcount = friedcount;
 				
-				connect();
+				if(inven >= friedcount) {
+					count++;
+					result += 17500;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--friedcount;
+					_2_Log.friedcount = friedcount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -633,14 +653,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 16000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐허니오리지날");
+				
 				++honeycount;
 				_2_Log.honeycount = honeycount;
 				
-				connect();
+				if(inven >= honeycount) {
+					count++;
+					result += 16000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--honeycount;
+					_2_Log.honeycount = honeycount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -664,14 +694,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 20000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐허니콤보");
+				
 				++honeycombocount;
 				_2_Log.honeycombocount = honeycombocount;
 				
-				connect();
+				if(inven >= honeycombocount) {
+					count++;
+					result += 20000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--honeycombocount;
+					_2_Log.honeycombocount = honeycombocount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+				
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -695,14 +735,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 16000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐오리지날");
+				
 				++originalcount;
 				_2_Log.originalcount = originalcount;
 				
-				connect();
+				if(inven >= originalcount) {
+					count++;
+					result += 16000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--originalcount;
+					_2_Log.originalcount = originalcount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -726,14 +776,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 17000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐오리지날반반");
+				
 				++originalhalfcount;
 				_2_Log.originalhalfcount = originalhalfcount;
 				
-				connect();
+				if(inven >= originalhalfcount) {
+					count++;
+					result += 17000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--originalhalfcount;
+					_2_Log.originalhalfcount = originalhalfcount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+				
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -757,14 +817,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 17000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐레드오리지날");
+				
 				++redcount;
 				_2_Log.redcount = redcount;
 				
-				connect();
+				if(inven >= redcount) {
+					count++;
+					result += 17000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--redcount;
+					_2_Log.redcount = redcount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+				
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -788,14 +858,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 20000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐레드콤보");
+				
 				++redcombocount;
 				_2_Log.redcombocount = redcombocount;
 				
-				connect();
+				if(inven >= redcombocount) {
+					count++;
+					result += 20000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--redcombocount;
+					_2_Log.redcombocount = redcombocount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -819,14 +899,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 22000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐레허반반");
+				
 				++redhoneyhalfcount;
 				_2_Log.redhoneyhalfcount = redhoneyhalfcount;
 				
-				connect();
+				if(inven >= redhoneyhalfcount) {
+					count++;
+					result += 22000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--redhoneyhalfcount;
+					_2_Log.redhoneyhalfcount = redhoneyhalfcount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+				
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -850,14 +940,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 17000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐살살치킨");
+				
 				++salsalcount;
 				_2_Log.salsalcount = salsalcount;
 				
-				connect();
+				if(inven >= salsalcount) {
+					count++;
+					result += 17000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--salsalcount;
+					_2_Log.salsalcount = salsalcount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+				
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -881,14 +981,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 18000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐신화오리지날");
+				
 				++shinhwacount;
 				_2_Log.shinhwacount = shinhwacount;
 				
-				connect();
+				if(inven >= shinhwacount) {
+					count++;
+					result += 18000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--shinhwacount;
+					_2_Log.shinhwacount = shinhwacount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+				
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -912,14 +1022,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 27500;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐시그니처세트");
+				
 				++signaturesetcount;
 				_2_Log.signaturesetcount = signaturesetcount;
 				
-				connect();
+				if(inven >= signaturesetcount) {
+					count++;
+					result += 27500;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--signaturesetcount;
+					_2_Log.signaturesetcount = signaturesetcount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -944,15 +1064,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 5500;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
-				++cheeseballcount;
-				_2_Log.cheeseballcount = cheeseballcount;
 				
 				connect();
+				int inven = getInven("세븐치즈볼");
 				
+				++cheeseballcount;
+				_2_Log.cheeseballcount = cheeseballcount;
+							
+				if(inven >= cheeseballcount) {
+					count++;
+					result += 5500;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--cheeseballcount;
+					_2_Log.cheeseballcount = cheeseballcount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -976,14 +1105,25 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 4900;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐치킨버거");
+				
 				++chickenburgercount;
 				_2_Log.chickenburgercount = chickenburgercount;
 				
-				connect();
+				if(inven >= chickenburgercount) {
+					count++;
+					result += 4900;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+
+				} else {
+					--chickenburgercount;
+					_2_Log.chickenburgercount = chickenburgercount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1007,14 +1147,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 6000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐치킨카츠");
+				
 				++chickenkatzcount;
 				_2_Log.chickenkatzcount = chickenkatzcount;
 				
-				connect();
+				if(inven >= chickenkatzcount) {
+					count++;
+					result += 6000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--chickenkatzcount;
+					_2_Log.chickenkatzcount = chickenkatzcount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+				
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1038,14 +1188,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 4000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐칠리포테이토");
+				
 				++chillypotatocount;
 				_2_Log.chillypotatocount = chillypotatocount;
 				
-				connect();
+				if(inven >= chillypotatocount) {
+					count++;
+					result += 4000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--chillypotatocount;
+					_2_Log.chillypotatocount = chillypotatocount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+				
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1069,14 +1229,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 1500;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐칩카사바");
+				
 				++chipcasabacount;
 				_2_Log.chipcasabacount = chipcasabacount;
 				
-				connect();
+				if(inven >= chipcasabacount) {
+					count++;
+					result += 1500;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--chipcasabacount;
+					_2_Log.chipcasabacount = chipcasabacount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1100,14 +1270,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 3500;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐꽈배기");
+				
 				++gguabegicount;
 				_2_Log.gguabegicount = gguabegicount;
 				
-				connect();
+				if(inven >= gguabegicount) {
+					count++;
+					result += 3500;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--gguabegicount;
+					_2_Log.gguabegicount = gguabegicount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1131,14 +1311,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 3500;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐웨지감자");
+				
 				++potatowedgescount;
 				_2_Log.potatowedgescount = potatowedgescount;
 				
-				connect();
+				if(inven >= potatowedgescount) {
+					count++;
+					result += 3500;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--potatowedgescount;
+					_2_Log.potatowedgescount = potatowedgescount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+				
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1155,6 +1345,7 @@ public class _6_Menu extends JFrame{
 					
 					e1.printStackTrace();
 				}
+				
 			}
 		});
 		
@@ -1162,14 +1353,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 500;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("치킨무");
+				
 				++mucount;
 				_2_Log.mucount = mucount;
 				
-				connect();
+				if(inven >= mucount) {
+					count++;
+					result += 500;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--mucount;
+					_2_Log.mucount = mucount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1193,14 +1394,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 1000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("적피클");
+				
 				++redpicklecount;
 				_2_Log.redpicklecount = redpicklecount;
 				
-				connect();
+				if(inven >= redpicklecount) {
+					count++;
+					result += 1000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--redpicklecount;
+					_2_Log.redpicklecount = redpicklecount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+				
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1224,14 +1435,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 5000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("세븐샐러드");
+				
 				++saladcount;
 				_2_Log.saladcount = saladcount;
 				
-				connect();
+				if(inven >= saladcount) {
+					count++;
+					result += 5000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--saladcount;
+					_2_Log.saladcount = saladcount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+				
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1255,14 +1476,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 1000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("하바네로마요소스");
+				
 				++saucehabaneromayocount;
 				_2_Log.saucehabaneromayocount = saucehabaneromayocount;
 				
-				connect();
+				if(inven >= saucehabaneromayocount) {
+					count++;
+					result += 1000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--saucehabaneromayocount;
+					_2_Log.saucehabaneromayocount = saucehabaneromayocount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1286,14 +1517,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 1000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("허니갈릭소스");
+				
 				++saucehoneygarliccount;
 				_2_Log.saucehoneygarliccount = saucehoneygarliccount;
 				
-				connect();
+				if(inven >= saucehoneygarliccount) {
+					count++;
+					result += 1000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--saucehoneygarliccount;
+					_2_Log.saucehoneygarliccount = saucehoneygarliccount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1317,14 +1558,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 1000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("레드소스");
+				
 				++sauceredcount;
 				_2_Log.sauceredcount = sauceredcount;
 				
-				connect();
+				if(inven >= sauceredcount) {
+					count++;
+					result += 1000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--sauceredcount;
+					_2_Log.sauceredcount = sauceredcount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1349,14 +1600,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 1000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("스위트칠리소스");
+				
 				++saucesweetchillycount;
 				_2_Log.saucesweetchillycount = saucesweetchillycount;
 				
-				connect();
+				if(inven >= saucesweetchillycount) {
+					count++;
+					result += 1000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--saucesweetchillycount;
+					_2_Log.saucesweetchillycount = saucesweetchillycount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1380,14 +1641,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 1000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("타르타르소스");
+				
 				++saucetartarecount;
 				_2_Log.saucetartarecount = saucetartarecount;
 				
-				connect();
+				if(inven >= saucetartarecount) {
+					count++;
+					result += 1000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--saucetartarecount;
+					_2_Log.saucetartarecount = saucetartarecount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1412,14 +1683,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 2000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("코카콜라");
+				
 				++cokecount;
 				_2_Log.cokecount = cokecount;
 				
-				connect();
+				if(inven >= cokecount) {
+					count++;
+					result += 2000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--cokecount;
+					_2_Log.cokecount = cokecount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1443,14 +1724,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 2000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("스프라이트");
+				
 				++spritecount;
 				_2_Log.spritecount = spritecount;
 				
-				connect();
+				if(inven >= spritecount) {
+					count++;
+					result += 2000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--spritecount;
+					_2_Log.spritecount = spritecount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1474,14 +1765,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 2000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("환타");
+				
 				++fantacount;
 				_2_Log.fantacount = fantacount;
 				
-				connect();
+				if(inven >= fantacount) {
+					count++;
+					result += 2000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--fantacount;
+					_2_Log.fantacount = fantacount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+				
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1505,14 +1806,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 11000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("한라산맥주");
+				
 				++hanlasanbeercount;
 				_2_Log.hanlasanbeercount = hanlasanbeercount;
 				
-				connect();
+				if(inven >= hanlasanbeercount) {
+					count++;
+					result += 11000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--hanlasanbeercount;
+					_2_Log.hanlasanbeercount = hanlasanbeercount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1536,14 +1847,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 3000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("허니스파클링");
+				
 				++honeysparklingcount;
 				_2_Log.honeysparklingcount = honeysparklingcount;
 				
-				connect();
+				if(inven >= honeysparklingcount) {
+					count++;
+					result += 3000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--honeysparklingcount;
+					_2_Log.honeysparklingcount = honeysparklingcount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+				
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1567,14 +1888,24 @@ public class _6_Menu extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				result += 7000;
-				resultPrice.setText(formatter.format(result) + "원");
-				cartBtn.setText("장바구니  " + count + "개");
+				
+				connect();
+				int inven = getInven("생맥주");
+				
 				++draftbeercount;
 				_2_Log.draftbeercount = draftbeercount;
 				
-				connect();
+				if(inven >= draftbeercount) {
+					count++;
+					result += 7000;
+					resultPrice.setText(formatter.format(result) + "원");
+					cartBtn.setText("장바구니  " + count + "개");
+				} else {
+					--draftbeercount;
+					_2_Log.draftbeercount = draftbeercount;
+					JOptionPane.showMessageDialog(null, "해당 상품의 재고가 부족합니다.");
+				}
+
 				try {
 					sql = "update menutable set menu_count = ? where menu_name = ?";
 					
@@ -1732,6 +2063,34 @@ public class _6_Menu extends JFrame{
 			e.printStackTrace();
 		}
 	}
+	
+	int getInven(String str) {
+		
+		int invenCount = 0;
+		
+		try {
+			sql = "select menu_count from menu_inven where menu_name = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, str);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				invenCount = rs.getInt("menu_count");
+			}
+			
+			rs.close(); pstmt.close(); 
+			
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+		}
+		
+		return invenCount;
+	
+	}	// getInven() 메서드 end
 	
 //	// main
 //	public static void main(String[] args) {
